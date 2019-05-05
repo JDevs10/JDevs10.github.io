@@ -63,6 +63,16 @@ body {
 		background-color: #1e252d;
 	}
 
+	.in-development{
+		height: fit-content;
+		width: fit-content;
+		padding-left: 10px;
+		padding-right: 10px;
+		color: #ffffff;
+		font-size: 10pt;
+		background-color: rgb(1, 83, 219);
+		box-shadow: inset 0 0 0 2px rgb(0, 0, 0);
+	}
 
 /* Type */
 
@@ -219,6 +229,28 @@ body {
 		border-bottom-color: #eeeeee;
 	}
 
+/* Row */
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		align-items: stretch;
+	}
+
+	.tech-info{
+		font-weight: normal;
+		font-size: 17px;
+	}
+
+	.technology{
+		color: #000000;
+		font-weight: bold;
+		font-size: 14px;
+	}
+
+	.row > p{
+		margin: 7px;
+	}
 
 /* Button */
 
