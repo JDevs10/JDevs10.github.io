@@ -817,6 +817,11 @@ body {
 			.image.main img {
 				width: 100%;
 			}
+		.image.fit.resize{
+			display: block;
+			width: 50%;
+			margin: 4rem auto;
+		}
 
 		@media screen and (max-width: 736px) {
 
