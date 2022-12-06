@@ -53,6 +53,7 @@ const App = {
         this.initH1H2s();
         this.initTechCanvas();
         this.initPortfolioWall();
+        this.initWorkExperience();
 
         document.addEventListener('error', (event) => {
             window.location.href = "./404.html";
@@ -241,9 +242,38 @@ const App = {
             portfolioWall.appendChild(list);
         });
     },
-    // init: function () {
-        
-    // },
+    initWorkExperience: function () {
+        const workWall = document.getElementById("work-wall");
+        if (Utils.Function.empty(workWall)) {
+            return;
+        }
+        workWall.classList.add('row');
+
+        Utils.Function.ajax('data/work.json', function (data) {
+            const jsonData = JSON.parse(data);
+
+            jsonData.forEach(item => {
+                const box = document.createElement('div');
+                box.classList.add('work-box');
+
+                const header = document.createElement('header');
+                header.innerText = item.header;
+                box.appendChild(header);
+
+                const section = document.createElement('section');
+                section.innerText = item.section;
+                const date = document.createElement('time');
+                date.innerText = item.date;
+                section.appendChild(date);
+                box.appendChild(section);
+
+                const footer = document.createElement('footer');
+                footer.innerText = item.header;
+                box.appendChild(footer);
+                workWall.appendChild(box);
+            });
+        });
+    },
     // init: function () {
         
     // },
