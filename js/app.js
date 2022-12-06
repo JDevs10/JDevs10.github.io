@@ -49,15 +49,16 @@ const App = {
         }
     ],
     init: function () {
-        this.menuInit();
-        this.generateH1H2s();
+        this.initMenu();
+        this.initH1H2s();
         this.initTechCanvas();
+        this.initPortfolioWall();
 
         document.addEventListener('error', (event) => {
             window.location.href = "./404.html";
         });
     },
-    menuInit: function () {
+    initMenu: function () {
         const myMenu = document.getElementById("myMenu");
 
         const headerMenu = document.createElement('div');
@@ -163,10 +164,11 @@ const App = {
         myTechCanvas.appendChild(techListElement);
         App.myTechCanvas = myTechCanvas;
     },
-    generateH1H2s: function () {
+    initH1H2s: function () {
         const h1h2Found = document.querySelectorAll("h1, h2");
         h1h2Found.forEach(elem => {
             const title = elem.ariaLabel ?? elem.attributes.getNamedItem('aria-label').value;
+
             for (let index = 0; index < title.length; index++) {
                 const char = title.charAt(index);
                 const imgJ = document.createElement('img');
@@ -177,6 +179,7 @@ const App = {
                 imgJ.setAttribute('height', 70);
                 imgJ.src = "https://picsum.photos/70/50";
                 imgJ.alt = "The J of Jean";
+                
                 const imgL = imgJ;
                 imgL.src = "https://picsum.photos/70/50";
                 imgL.alt = "The L of Laurent";
@@ -206,9 +209,38 @@ const App = {
         });
 
     },
-    // init: function () {
-        
-    // },
+    initPortfolioWall: function () {
+        const portfolioWall = document.getElementById("portfolio-wall");
+        if (Utils.Function.empty(portfolioWall)) {
+            return;
+        }
+
+        Utils.Function.ajax('data/portfolio.json', function (data) {
+            const jsonData = JSON.parse(data);
+            const list = document.createElement('ul');
+            jsonData.forEach(item => {
+                const bgDiv = document.createElement('div');
+                bgDiv.classList.add('magic-wall_item');
+                bgDiv.style = `background-image: url('${item.thumbnail}');`;
+                
+                const hoverDiv = document.createElement('div');
+                hoverDiv.classList.add('hover-content');
+                bgDiv.appendChild(hoverDiv);
+
+                const itemLink = document.createElement('a');
+                itemLink.href = item.link;
+                itemLink.title = item.title;
+                itemLink.classList.add('colorbox');
+                itemLink.target = "_blank";
+                bgDiv.appendChild(itemLink);
+
+                const li = document.createElement('li');
+                li.appendChild(bgDiv);
+                list.appendChild(li);
+            });
+            portfolioWall.appendChild(list);
+        });
+    },
     // init: function () {
         
     // },

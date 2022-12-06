@@ -749,15 +749,8 @@ button, html [type=button], [type=reset], [type=submit] {
     align-items: center;
     overflow: hidden;
 }
-.lazyloaded {
-    opacity: 1;
-    -o-transition: opacity .5s;
-    transition: opacity .5s;
-    -webkit-transition: opacity .5s;
-    z-index: 0;
-}
 
-.inf-map.show, .lazyloaded .inf-map {
+.inf-map.show, .inf-map {
     opacity: 1;
     -webkit-transform: translateY(0);
     -ms-transform: translateY(0);
