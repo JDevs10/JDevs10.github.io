@@ -240,6 +240,8 @@ li {
 }
 .section-full .text-zone {
     padding-left: 5rem;
+    min-width: 400px;
+    flex: 1 0 0%;
 }
 .section-home.loaded .text-zone > * {
     opacity: 1;
@@ -889,6 +891,8 @@ img {
 }
 .skills-charts {
     width: 50%;
+    min-width: 400px;
+    flex: 1 0 0%;
 }
 .section-about .skills-charts > #myTechCanvasContainer {
     position: relative;
