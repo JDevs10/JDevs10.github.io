@@ -656,6 +656,7 @@ p {
 
 .contact-form form {
     position: relative;
+    margin-bottom: 50px;
 }
 
 .contact-form ul {
