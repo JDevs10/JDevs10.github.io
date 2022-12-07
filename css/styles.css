@@ -641,8 +641,10 @@ p {
 }
 
 .section-contact .text-zone {
-    width: 50%;
+    /* width: 50%; */
     padding-right: 5rem;
+    min-width: 400px;
+    flex: 1 0 0%;
 }
 
 .contact-form {
@@ -733,16 +735,11 @@ button, html [type=button], [type=reset], [type=submit] {
     -webkit-appearance: button;
 }
 
-.section-contact .text-zone+div {
-    position: absolute !important;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    right: 0;
+.contact-map {
+    min-width: 400px;
+    flex: 1 0 0%;
 }
 .section-contact .contact-map {
-    /* height: 100%;
-    width: 100%; */
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -751,7 +748,6 @@ button, html [type=button], [type=reset], [type=submit] {
     justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center;
     overflow: hidden;
 }
 
@@ -763,31 +759,32 @@ button, html [type=button], [type=reset], [type=submit] {
 }
 .inf-map {
     position: absolute;
-    background: rgba(0,0,0,.9);
-    top: 50px;
-    left: 5rem;
+    background: rgba(0,0,0,0.9);
+    right: 5rem;
     z-index: 999999;
-    width: 310px;
+    width: 280px;
     padding: 20px;
     color: #fff;
-    font-family: "Open Sans","Helvetica",Arial,sans-serif;
+    font-family: "Open Sans", "Helvetica", Arial, sans-serif;
     font-size: 17px;
     font-weight: 300;
-    opacity: 0;
     -webkit-transform: translateY(100px);
     -ms-transform: translateY(100px);
     transform: translateY(100px);
-    -webkit-transition: opacity .4s,-webkit-transform .9s;
-    transition: opacity .4s,-webkit-transform .9s;
-    -o-transition: opacity .4s,transform .9s;
-    transition: opacity .4s,transform .9s;
-    transition: opacity .4s,transform .9s,-webkit-transform .9s;
+    -webkit-transition: opacity 0.4s, -webkit-transform 0.9s;
+    transition: opacity 0.4s, -webkit-transform 0.9s;
+    -o-transition: opacity 0.4s, transform 0.9s;
+    transition: opacity 0.4s, transform 0.9s;
+    transition: opacity 0.4s, transform 0.9s, -webkit-transform 0.9s;
 }
 .inf-map span {
     font-size: 16px;
 }
 .inf-map span span {
     color: #00AAFF;
+}
+.contact-map > iframe {
+    width: 100%;
 }
 img {
     max-width: 100%;
@@ -890,7 +887,6 @@ img {
     line-height: 1.8rem;
 }
 .skills-charts {
-    width: 50%;
     min-width: 400px;
     flex: 1 0 0%;
 }

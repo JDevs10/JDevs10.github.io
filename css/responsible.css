@@ -23,6 +23,9 @@
     .work-box {
         width: 30%;
     }
+    .contact-map > iframe {
+        height: 500px;
+    }
 }
 
 @media (max-width: 768px) {
