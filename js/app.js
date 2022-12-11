@@ -1,14 +1,26 @@
 import { Utils } from "./utils.js";
 const App = {
+    myContainer:  document.getElementById('myContainer'),
+    logoImg: "https://picsum.photos/100/100",
     READY: false,
     ERROR: false,
     myTechCanvas: null,
+    myThoughts: [
+        "One who smiles rather than rages is always the stronger.",
+        "Live more worry less.",
+        "Do What You Love,\nLove What You Do.",
+        "M.A.T.H.\nMental Abuse To Humans.",
+        "Y.O.L.O.\nYou Only Live Once.",
+        "Work Hard Play Hard.",
+        "You got this",
+        "I didn't come this far to only come this far."
+    ],
     mainMenuNav: [
-        {rel: "about", href: "about.html", label: "About"},
-        {rel: "skills", href: "skills.html", label: "My Skills"},
-        {rel: "work", href: "portfolio.html", label: "Portfolio"},
-        {rel: "blog", href: "blog.html", label: "Blog"},
-        {rel: "contact", href: "contact.html", label: "Contact"}
+        {rel: "about", label: "About"},
+        {rel: "skills", label: "My Skills"},
+        {rel: "work", label: "Portfolio"},
+        {rel: "blog", label: "Blog"},
+        {rel: "contact", label: "Contact"}
     ],
     mySocials: [
         {
@@ -58,6 +70,9 @@ const App = {
         document.addEventListener('error', (event) => {
             window.location.href = "./404.html";
         });
+
+        document.body.classList.add('window-loaded');
+        App.READY = true;
     },
     initMenu: function () {
         const myMenu = document.getElementById("myMenu");
@@ -67,9 +82,12 @@ const App = {
         const htlLogoLink = document.createElement('a');
         htlLogoLink.classList.add('logo');
         htlLogoLink.rel = "home";
-        htlLogoLink.href = "./index.html";
+        htlLogoLink.addEventListener('click', function() {
+            App.loader.loadPage(`index.html`, 10);
+        });
+        htlLogoLink.style.cursor = 'pointer';
         const img = document.createElement('img');
-        img.src="https://picsum.photos/100/100";
+        img.src=App.logoImg;
         htlLogoLink.appendChild(img);
         htlLogoLink.appendChild(document.createElement('br'));
         const span1 = document.createElement('span');
@@ -85,11 +103,14 @@ const App = {
         const navContent = document.createElement('nav');
         navContent.classList.add('main-menu_nav');
         this.mainMenuNav.forEach(elem => {
-            const htlMenuLink = document.createElement('a');
-            htlMenuLink.rel = elem.rel;
-            htlMenuLink.href = elem.href;
-            htlMenuLink.innerHTML = elem.label;
-            navContent.appendChild(htlMenuLink);
+            const btn = document.createElement('a');
+            btn.addEventListener('click', function() {
+                App.loader.loadPage(`${elem.rel}.html`);
+            });
+            btn.innerHTML = elem.label;
+            btn.rel = elem.rel;
+            btn.style.cursor = 'pointer';
+            navContent.appendChild(btn);
         });
         myMenu.appendChild(navContent);
 
@@ -156,7 +177,7 @@ const App = {
         techList.forEach(element => {
             const techListElementItem = document.createElement('li');
             const itemA = document.createElement('a');
-            itemA.setAttribute('href', '#');
+            itemA.setAttribute('href', element.url);
             itemA.setAttribute('target', '_blank');
             itemA.innerHTML = element.name;
             techListElementItem.appendChild(itemA);
@@ -216,30 +237,32 @@ const App = {
             return;
         }
 
-        Utils.Function.ajax('data/portfolio.json', function (data) {
-            const jsonData = JSON.parse(data);
-            const list = document.createElement('ul');
-            jsonData.forEach(item => {
-                const bgDiv = document.createElement('div');
-                bgDiv.classList.add('magic-wall_item');
-                bgDiv.style = `background-image: url('${item.thumbnail}');`;
-                
-                const hoverDiv = document.createElement('div');
-                hoverDiv.classList.add('hover-content');
-                bgDiv.appendChild(hoverDiv);
+        Utils.Function.ajax('data/portfolio.json', function (response, httpCode) {
+            if (httpCode == 200) {
+                const jsonData = JSON.parse(response);
+                const list = document.createElement('ul');
+                jsonData.forEach(item => {
+                    const bgDiv = document.createElement('div');
+                    bgDiv.classList.add('magic-wall_item');
+                    bgDiv.style = `background-image: url('${item.thumbnail}');`;
 
-                const itemLink = document.createElement('a');
-                itemLink.href = item.link;
-                itemLink.title = item.title;
-                itemLink.classList.add('colorbox');
-                itemLink.target = "_blank";
-                bgDiv.appendChild(itemLink);
+                    const hoverDiv = document.createElement('div');
+                    hoverDiv.classList.add('hover-content');
+                    bgDiv.appendChild(hoverDiv);
 
-                const li = document.createElement('li');
-                li.appendChild(bgDiv);
-                list.appendChild(li);
-            });
-            portfolioWall.appendChild(list);
+                    const itemLink = document.createElement('a');
+                    itemLink.href = item.link;
+                    itemLink.title = item.title;
+                    itemLink.classList.add('colorbox');
+                    itemLink.target = "_blank";
+                    bgDiv.appendChild(itemLink);
+
+                    const li = document.createElement('li');
+                    li.appendChild(bgDiv);
+                    list.appendChild(li);
+                });
+                portfolioWall.appendChild(list);
+            }
         });
     },
     initWorkExperience: function () {
@@ -249,40 +272,149 @@ const App = {
         }
         workWall.classList.add('row');
 
-        Utils.Function.ajax('data/work.json', function (data) {
-            const jsonData = JSON.parse(data);
+        Utils.Function.ajax('data/work.json', function (data, httpCode) {
+            if (httpCode == 200) {
+                const jsonData = JSON.parse(data);
+                jsonData.forEach(item => {
+                    const box = document.createElement('div');
+                    box.classList.add('work-box');
 
-            jsonData.forEach(item => {
-                const box = document.createElement('div');
-                box.classList.add('work-box');
+                    const header = document.createElement('header');
+                    header.innerText = item.header;
+                    box.appendChild(header);
 
-                const header = document.createElement('header');
-                header.innerText = item.header;
-                box.appendChild(header);
+                    const section = document.createElement('section');
+                    section.innerText = item.section;
+                    const date = document.createElement('time');
+                    date.innerText = item.date;
+                    section.appendChild(date);
+                    box.appendChild(section);
 
-                const section = document.createElement('section');
-                section.innerText = item.section;
-                const date = document.createElement('time');
-                date.innerText = item.date;
-                section.appendChild(date);
-                box.appendChild(section);
-
-                const footer = document.createElement('footer');
-                footer.innerText = item.header;
-                box.appendChild(footer);
-                workWall.appendChild(box);
-            });
+                    const footer = document.createElement('footer');
+                    footer.innerText = item.footer;
+                    box.appendChild(footer);
+                    workWall.appendChild(box);
+                });
+            }
         });
     },
-    // init: function () {
-        
-    // },
+    /**
+     * @description The loader div/obj
+     */
+    loader: {
+        isLoading: false,
+        preloader: function() {
+            const preloader = document.getElementById('preloader');
+            if (Utils.Function.empty(preloader)) {
+                const loaderDiv = document.createElement('div');
+                loaderDiv.classList.add('preloader');
+                document.body.appendChild(loaderDiv);
+                return loaderDiv;
+            }
+            return preloader;
+        },
+        barValue: null,
+        progressBar: null,
+        progressBar_bg: null,
+        /**
+         * @description Init loading div. It will display
+         */
+        init: function() {
+            const inner = document.createElement('div'),
+            myThoughts = document.createElement('span'),
+            logo = document.createElement('img');
+
+            logo.src = App.logoImg;
+            const text = Utils.Function.choose(App.myThoughts),
+            measureText = Utils.Function.measureText(text);
+            myThoughts.style.margin = '20px auto';
+            myThoughts.style.width = `${(measureText.width / 2)}px`;
+            myThoughts.innerText = text;
+            
+            App.loader.barValue = document.createElement('span');
+            App.loader.progressBar = document.createElement('div');
+            App.loader.progressBar_bg = document.createElement('div');
+
+            App.loader.preloader().classList.add('preloader');
+            inner.classList.add('inner');
+            App.loader.progressBar.classList.add('progressBar');
+            App.loader.progressBar_bg.classList.add('progressBar-bg');
+            
+            App.loader.progressBar_bg.appendChild(App.loader.progressBar);
+            App.loader.progressBar_bg.appendChild(App.loader.barValue);
+            inner.appendChild(logo);
+            inner.appendChild(myThoughts);
+            inner.appendChild(App.loader.progressBar_bg);
+            App.loader.preloader().appendChild(inner);
+        },
+        /**
+         * @description Increasse the speed of proress bar
+         * @param {Number}      SPEED       Higher the value the slower progess bar, Smaller the value the faster the progress bar finish. Default at 40
+         * @param {Function}    callback    Call function when progress bar is at 100%
+         */
+        increase: function (SPEED = 40, callback) {
+            const limit = 100;
+            for(let i = 0; i <= limit; i++) {
+                setTimeout(function () {
+                    if (i == 100) {
+                        callback();
+                    } else if (i >= 94) {
+                        App.loader.progressBar_bg.style = "position: absolute;flex-wrap: wrap;";
+                        App.loader.barValue.style = "margin: auto;";
+                    }
+                    App.loader.barValue.innerHTML = `${i}%`;
+                    App.loader.progressBar.style.width = `${i}%`;
+                }, SPEED * i);
+            }
+        },
+        /**
+         * @description Show loading div before changing page
+         * @param {String} url 
+         * @param {Number} speed 
+         * @returns 
+         */
+        loadPage: function (url, speed = 20) {
+            if (!App.READY || this.isLoading || Utils.Function.empty(App.myContainer) || !Utils.Function.isString(url)) {return false;}
+
+            this.isLoading = true;
+            this.init();
+            this.increase(speed, function () {
+                
+                Utils.Function.ajax(url, function (response, httpCode) {
+                    console.log('Done');
+                    console.log(response, httpCode);
+    
+                    if (Utils.Function.empty(response)) {
+                        App.loader.loadPageError(httpCode);
+                    } else {
+                        document.textContent = response;
+                        document.location = url;
+                    }
+                    App.loader.isLoading = false;
+                });
+            });
+        },
+        /**
+         * @description Load error page based of Http code
+         * @param {Number} code 
+         */
+        loadPageError: function (code) {
+            switch (code) {
+                case 404:
+                    document.location = `${code}.html`;
+                    break;
+            
+                default:
+                    document.location = '404.html';
+                    break;
+            }
+        }
+    }
 };
 
 window.onload = () => {
     if (!App.READY) {
         App.init();
-        App.READY = true;
 
         if (Utils.Function.isScriptAdded('js/tagcanvas.js')) {
             if (!Utils.Function.empty(TagCanvas) && !Utils.Function.empty(App.myTechCanvas)) {
