@@ -1,18 +1,18 @@
-@media (max-width: 1400px) {
+/* @media (min-width: 1400px) {
     .container {
         max-width: 1320px;
     }
     .work-box {
         width: 33.3%;
     }
-}
+} */
 
 @media (max-width: 1400px) {
     .container {
         max-width: 1140px;
     }
     .work-box {
-        width: 30%;
+        max-width: 350px;
     }
 }
 
@@ -21,10 +21,19 @@
         max-width: 960px;
     }
     .work-box {
-        width: 30%;
+        max-width: 350px;
     }
     .contact-map > iframe {
         height: 500px;
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        max-width: 720px;
+    }
+    .work-box {
+        max-width: 100%;
     }
 }
 
@@ -33,7 +42,7 @@
         max-width: 720px;
     }
     .work-box {
-        width: 50%;
+        width: 100%;
     }
 }
 
@@ -42,7 +51,7 @@
         max-width: 540px;
     }
     .work-box {
-        width: 49%;
+        width: 100%;
     }
 }
 
