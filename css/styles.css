@@ -207,6 +207,73 @@ li {
     padding: 2rem 7px;
 }
 
+/* Loader */
+.preloader {
+    position: fixed;
+    will-change: transform;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #1D1D1D;
+    z-index: 2;
+    display: block;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+.preloader .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 400px;
+    max-width: 100%;
+    height: 160px;
+    text-align: center;
+}
+.preloader .inner > img {
+    display: block;
+    margin: 0 auto;
+}
+.preloader .inner > span {
+    color: #8d8d8d;
+    margin-top: 9px;
+    font-size: 13px;
+    font-family: "Open Sans", sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    display: block;
+    text-align: start;
+}
+.preloader .progressBar-bg {
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    height: 0px;
+    width: 100%;
+}
+.progressBar {
+    box-shadow: 0 10px 40px -10px #706FD3;
+    border-radius: 100px;
+    /* background: #00AAFF; */
+    background: linear-gradient(to right, #1d1d1d 0%, #FFFFFF 25%, #00AAFF 50%, #706FD3 75%, #1d1d1d 100%);
+    height: 10px;
+    width: 0;
+} 
+.progressBar-bg span {
+    margin-left: 5px;
+    color: #fff;
+    font-weight: bolder;
+}
+
+
+
+
+
+
 /* body */
 .page-outer {
     min-height: 100vh;
@@ -457,9 +524,6 @@ canvas {
 .scroll-down svg {
     margin-top: 10px;
     width: 10px;
-}
-.window-loaded .section-full {
-    opacity: 1;
 }
 .section-work {
     overflow: hidden;
@@ -852,20 +916,20 @@ img {
     flex: 1 0 0%;
 }
 .work-row {
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: space-between; */
     margin-top: 5rem;
 }
 .work-box {
-    min-width: 400px;
+    max-width: 400px;
     background: #2a2a2a;
     padding: 2.5rem;
-    margin: 10px;
-    flex: 1 0 0%;
+    margin: 10px auto;
+    /* flex: 1 0 0%; */
 }
 .work-box header {
     font-family: font-file-82132;
