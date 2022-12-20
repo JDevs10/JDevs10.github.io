@@ -86,7 +86,7 @@ h2:after {
     left: -1rem;
     bottom: -2rem;
 }
-.fake-magicwall:before {
+.bg-section-openTag:before {
     content: '<section>';
     font-family: 'La Belle Aurore',cursive;
     color: #515152;
@@ -95,7 +95,7 @@ h2:after {
     margin-top: -4rem;
     left: 2rem
 }
-.fake-magicwall:after {
+.bg-section-closeTag:after {
     content: '<section/>';
     font-family: 'La Belle Aurore',cursive;
     color: #515152;
