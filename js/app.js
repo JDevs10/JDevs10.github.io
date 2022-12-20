@@ -1,7 +1,10 @@
 import { Utils } from "./utils.js";
 const App = {
     myContainer:  document.getElementById('myContainer'),
-    logoImg: "https://picsum.photos/100/100",
+    oldLogoImg: "https://picsum.photos/100/100",
+    jlLogoImg: "img/JL-Logo.png",
+    jLogoImg: "img/J-Logo.png",
+    lLogoImg: "img/L-Logo.png",
     READY: false,
     ERROR: false,
     myTechCanvas: null,
@@ -18,7 +21,7 @@ const App = {
     mainMenuNav: [
         {rel: "about", label: "About"},
         {rel: "skills", label: "My Skills"},
-        {rel: "work", label: "Portfolio"},
+        {rel: "portfolio", label: "Portfolio"},
         {rel: "blog", label: "Blog"},
         {rel: "contact", label: "Contact"}
     ],
@@ -61,6 +64,7 @@ const App = {
         }
     ],
     init: function () {
+        this.initIcon();
         this.initMenu();
         this.initH1H2s();
         this.initTechCanvas();
@@ -73,6 +77,15 @@ const App = {
 
         document.body.classList.add('window-loaded');
         App.READY = true;
+    },
+    initIcon: function () {
+        let link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+        link.href = App.jlLogoImg;
     },
     initMenu: function () {
         const myMenu = document.getElementById("myMenu");
@@ -87,7 +100,7 @@ const App = {
         });
         htlLogoLink.style.cursor = 'pointer';
         const img = document.createElement('img');
-        img.src=App.logoImg;
+        img.src=App.jlLogoImg;
         htlLogoLink.appendChild(img);
         htlLogoLink.appendChild(document.createElement('br'));
         const span1 = document.createElement('span');
@@ -190,22 +203,27 @@ const App = {
         const h1h2Found = document.querySelectorAll("h1, h2");
         h1h2Found.forEach(elem => {
             const title = elem.ariaLabel ?? elem.attributes.getNamedItem('aria-label').value;
+            
+            const imgJ = document.createElement('img');
+            imgJ.classList.add('blast');
+            imgJ.classList.add('spin-me');
+            imgJ.classList.add('animation-logo');
+            imgJ.setAttribute('width', 50);
+            imgJ.setAttribute('height', 70);
+            imgJ.src = App.jLogoImg;
+            imgJ.alt = "The J of Jean";
+            
+            const imgL = document.createElement('img');
+            imgL.classList.add('blast');
+            imgL.classList.add('spin-me');
+            imgL.classList.add('animation-logo');
+            imgL.setAttribute('width', 50);
+            imgL.setAttribute('height', 70);
+            imgL.src = App.lLogoImg;
+            imgL.alt = "The L of Laurent";
 
             for (let index = 0; index < title.length; index++) {
                 const char = title.charAt(index);
-                const imgJ = document.createElement('img');
-                imgJ.classList.add('blast');
-                imgJ.classList.add('spin-me');
-                imgJ.classList.add('animation-logo');
-                imgJ.setAttribute('width', 50);
-                imgJ.setAttribute('height', 70);
-                imgJ.src = "https://picsum.photos/70/50";
-                imgJ.alt = "The J of Jean";
-                
-                const imgL = imgJ;
-                imgL.src = "https://picsum.photos/70/50";
-                imgL.alt = "The L of Laurent";
-
                 const span = document.createElement('span');
                 span.style.opacity = 1;
                 if (char !== ' ') {
@@ -241,6 +259,7 @@ const App = {
             if (httpCode == 200) {
                 const jsonData = JSON.parse(response);
                 const list = document.createElement('ul');
+                // list.classList.add('magicwall-grid');
                 jsonData.forEach(item => {
                     const bgDiv = document.createElement('div');
                     bgDiv.classList.add('magic-wall_item');
@@ -324,7 +343,8 @@ const App = {
             myThoughts = document.createElement('span'),
             logo = document.createElement('img');
 
-            logo.src = App.logoImg;
+            logo.setAttribute('width', 100);
+            logo.src = App.jlLogoImg;
             const text = Utils.Function.choose(App.myThoughts),
             measureText = Utils.Function.measureText(text);
             myThoughts.style.margin = '20px auto';
