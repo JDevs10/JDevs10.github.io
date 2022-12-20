@@ -301,6 +301,9 @@ li {
     -o-transition: opacity .4s;
     transition: opacity .4s;
 }
+.section-full--nopadding {
+    padding: 0 !important;
+}
 .section-home .text-zone {
     position: relative;
     z-index: 1;
@@ -826,7 +829,7 @@ button, html [type=button], [type=reset], [type=submit] {
     position: absolute;
     background: rgba(0,0,0,0.9);
     right: 5rem;
-    z-index: 999999;
+    /* z-index: 999999; */
     width: 280px;
     padding: 20px;
     color: #fff;
