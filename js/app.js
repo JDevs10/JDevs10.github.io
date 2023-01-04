@@ -72,6 +72,7 @@ const App = {
         this.initTechCanvas();
         this.initPortfolioWall();
         this.initWorkExperience();
+        this.initResponsive();
 
         document.addEventListener('error', (event) => {
             window.location.href = "./404.html";
@@ -92,11 +93,11 @@ const App = {
     initMenu: function () {
         const myMenu = document.getElementById("myMenu");
 
-        if (Utils.Function.empty(document.getElementById('clsMenuMobileBtn'))) {
-            const clsMenuMobileBtn = document.createElement('a');
-            clsMenuMobileBtn.setAttribute('id', 'menuMobileBtn');
-            clsMenuMobileBtn.classList.add('mbtn');
-            clsMenuMobileBtn.classList.add('spin-me');
+        if (Utils.Function.empty(document.getElementById('menuMobileBtn'))) {
+            const menuMobileBtn = document.createElement('a');
+            menuMobileBtn.setAttribute('id', 'menuMobileBtn');
+            menuMobileBtn.classList.add('mbtn');
+            menuMobileBtn.classList.add('spin-me');
 
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
             path = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -107,15 +108,15 @@ const App = {
             path.setAttribute('fill', "currentColor");
             path.setAttribute('d', "M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z");
             svg.appendChild(path);
-            clsMenuMobileBtn.appendChild(svg);
+            menuMobileBtn.appendChild(svg);
 
-            clsMenuMobileBtn.addEventListener('click', function (e) {
-                clsMenuMobileBtn.classList.add('mbtn-cl');
+            menuMobileBtn.addEventListener('click', function (e) {
+                menuMobileBtn.classList.add('mbtn-cl');
                 const _myMenu = document.getElementById("myMenu");
                 _myMenu.style.display = 'flex';
                 _myMenu.style.opacity = '1';
             });
-            document.getElementsByTagName('body')[0].appendChild(clsMenuMobileBtn);
+            document.getElementsByTagName('body')[0].appendChild(menuMobileBtn);
         }
 
         const headerMenu = document.createElement('div');
@@ -207,19 +208,10 @@ const App = {
 
             clsMenuMobileBtn.addEventListener('click', function (e) {
                 document.getElementById('menuMobileBtn').classList.remove('mbtn-cl');
-                const myMenu = document.getElementById('myMenu');
-                myMenu.style.display = 'none';
-                myMenu.style.opacity = '0';
+                document.getElementById('myMenu').removeAttribute('style');
             });
             myMenu.appendChild(clsMenuMobileBtn);
         }
-
-        window.addEventListener('resize', function(e) {
-            if (e.currentTarget.innerWidth < 1200) {
-                App.MOBILE = true;
-            } else {App.MOBILE = false;}
-		});
-
     },
     hideMenu: function () {
         const myMenu = document.getElementById('myMenu');
@@ -504,6 +496,13 @@ const App = {
                     break;
             }
         }
+    },
+    initResponsive: function () {
+        window.addEventListener('resize', function(e) {
+            if (e.currentTarget.innerWidth < 1200) {
+                App.MOBILE = true;
+            } else {App.MOBILE = false;}
+		});
     }
 };
 

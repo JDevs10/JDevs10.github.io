@@ -85,7 +85,7 @@ menu {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
 }
 .main-menu-top span {
     font-family: "Open Sans";
