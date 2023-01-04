@@ -6,6 +6,7 @@ const App = {
     jLogoImg: "img/J-Logo.png",
     lLogoImg: "img/L-Logo.png",
     READY: false,
+    MOBILE: false,
     ERROR: false,
     myTechCanvas: null,
     myThoughts: [
@@ -66,6 +67,7 @@ const App = {
     init: function () {
         this.initIcon();
         this.initMenu();
+        this.initMobileMenu();
         this.initH1H2s();
         this.initTechCanvas();
         this.initPortfolioWall();
@@ -90,12 +92,41 @@ const App = {
     initMenu: function () {
         const myMenu = document.getElementById("myMenu");
 
+        if (Utils.Function.empty(document.getElementById('clsMenuMobileBtn'))) {
+            const clsMenuMobileBtn = document.createElement('a');
+            clsMenuMobileBtn.setAttribute('id', 'menuMobileBtn');
+            clsMenuMobileBtn.classList.add('mbtn');
+            clsMenuMobileBtn.classList.add('spin-me');
+
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+            path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            svg.setAttribute('xmlns', "http://www.w3.org/2000/svg");
+            svg.setAttribute('viewBox', '0 0 448 512');
+            svg.setAttribute('role', "img");
+            svg.setAttribute('focusable', false);
+            path.setAttribute('fill', "currentColor");
+            path.setAttribute('d', "M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z");
+            svg.appendChild(path);
+            clsMenuMobileBtn.appendChild(svg);
+
+            clsMenuMobileBtn.addEventListener('click', function (e) {
+                clsMenuMobileBtn.classList.add('mbtn-cl');
+                const _myMenu = document.getElementById("myMenu");
+                _myMenu.style.display = 'flex';
+                _myMenu.style.opacity = '1';
+            });
+            document.getElementsByTagName('body')[0].appendChild(clsMenuMobileBtn);
+        }
+
         const headerMenu = document.createElement('div');
         headerMenu.classList.add('main-menu-top');
         const htlLogoLink = document.createElement('a');
         htlLogoLink.classList.add('logo');
         htlLogoLink.rel = "home";
         htlLogoLink.addEventListener('click', function() {
+            if (App.MOBILE) {
+                App.hideMenu();
+            }
             App.loader.loadPage(`index.html`, 10);
         });
         htlLogoLink.style.cursor = 'pointer';
@@ -118,6 +149,9 @@ const App = {
         this.mainMenuNav.forEach(elem => {
             const btn = document.createElement('a');
             btn.addEventListener('click', function() {
+                if (App.MOBILE) {
+                    App.hideMenu();
+                }
                 App.loader.loadPage(`${elem.rel}.html`);
             });
             btn.innerHTML = elem.label;
@@ -150,6 +184,47 @@ const App = {
             footerUl.appendChild(footerLi);
         });
         myMenu.appendChild(footerUl);
+    },
+    initMobileMenu: function () {
+        const myMenu = document.getElementById('myMenu');
+
+        if (Utils.Function.empty(document.getElementById('clsMenuMobileBtn'))) {
+            const clsMenuMobileBtn = document.createElement('a');
+            clsMenuMobileBtn.setAttribute('id', 'clsMenuMobileBtn');
+            clsMenuMobileBtn.classList.add('mbtn');
+            clsMenuMobileBtn.classList.add('spin-me');
+
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+            path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            svg.setAttribute('xmlns', "http://www.w3.org/2000/svg");
+            svg.setAttribute('viewBox', '0 0 448 512');
+            svg.setAttribute('role', "img");
+            svg.setAttribute('focusable', false);
+            path.setAttribute('fill', "currentColor");
+            path.setAttribute('d', "M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z");
+            svg.appendChild(path);
+            clsMenuMobileBtn.appendChild(svg);
+
+            clsMenuMobileBtn.addEventListener('click', function (e) {
+                document.getElementById('menuMobileBtn').classList.remove('mbtn-cl');
+                const myMenu = document.getElementById('myMenu');
+                myMenu.style.display = 'none';
+                myMenu.style.opacity = '0';
+            });
+            myMenu.appendChild(clsMenuMobileBtn);
+        }
+
+        window.addEventListener('resize', function(e) {
+            if (e.currentTarget.innerWidth < 1200) {
+                App.MOBILE = true;
+            } else {App.MOBILE = false;}
+		});
+
+    },
+    hideMenu: function () {
+        const myMenu = document.getElementById('myMenu');
+        myMenu.style.display = 'none';
+        myMenu.style.opacity = '0';
     },
     initTechCanvas: function () {
         const myTechCanvas = document.getElementById("myTechCanvas");
@@ -432,7 +507,8 @@ const App = {
     }
 };
 
-window.onload = () => {
+window.onload = (e) => {
+    if (e.currentTarget.innerWidth < 1200) {App.MOBILE = true;} else {App.MOBILE = false;}
     if (!App.READY) {
         App.init();
 
