@@ -6,7 +6,7 @@ export const Utils = {
          * @returns Boolean
          */
         empty: function (value) {
-            if (value === null || value === undefined) {
+            if (value === null || value === undefined || value === false) {
                 return true;
             } else if (Array.isArray(value)) {
                 if (value.length > 0) {
@@ -33,12 +33,6 @@ export const Utils = {
          * @returns HTMLElement
          */
         load : function (elemId) {return document.getElementById(elemId);},
-        /**
-         * @description Pick an item randomly from a list
-         * @param {Array} list 
-         * @returns Item
-         */
-        choose : function (list) {return list[Math.floor(Math.random()*list.length)];},
         isScriptAdded: function (src) {
             return Boolean(document.querySelector('script[src="' + src + '"]'));
         },
@@ -87,6 +81,48 @@ export const Utils = {
             lDiv = null;
 
             return lResult;
+        }
+    },
+    Math: {
+        /**
+         * @description Pick an item randomly from a list
+         * @param {Array} list 
+         * @returns Item
+         */
+        choose : function (list) {return list[Math.floor(Math.random()*list.length)];},
+        /**
+         * 
+         * @param {Number} min 
+         * @param {Number} max 
+         * @returns 
+         */
+        getRandomBetween : function (min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        },
+        /**
+         * 
+         * @param {Number} x 
+         * @returns 
+         */
+        easeOutQuart : function (x) {
+            return 1 - Math.pow(1 - x, 4)
+        },
+        /**
+         * 
+         * @param {Number} x 
+         * @returns 
+         */
+        easeOutQuad : function (x) {
+            return 1 - (1 - x) * (1 - x)
+        },
+        /**
+         * 
+         * @param {Number} x 
+         * @returns 
+         */
+        easeOutElastic : function (x) {
+            const c4 = (2 * Math.PI) / 3
+            return x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1
         }
     }
 }
