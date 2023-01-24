@@ -264,7 +264,7 @@ const App = {
         },
         resetDots: function () {
             App.welcomeCanvas.dots = [];
-            for (let i = 0; i < 1000; i++) {
+            for (let i = 0; i < 2000; i++) {
                 App.welcomeCanvas.dots.push(new App.welcomeCanvas.Dots())
             }
         },
