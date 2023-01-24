@@ -67,6 +67,7 @@ const App = {
     init: function () {
         this.initIcon();
         this.initMenu();
+        this.welcomeCanvas.init();
         this.initMobileMenu();
         this.initH1H2s();
         this.initTechCanvas();
@@ -217,6 +218,119 @@ const App = {
         const myMenu = document.getElementById('myMenu');
         myMenu.style.display = 'none';
         myMenu.style.opacity = '0';
+    },
+    welcomeCanvas: {
+        canvas: null,
+        ctx: null,
+        width: 0,
+        height: 0,
+        mouse: {
+            x: null,
+            y: null
+        },
+        dots: [],
+        init: function () {
+            App.welcomeCanvas.canvas = document.getElementById('welcomeCanvas')
+            if (Utils.Function.empty(App.welcomeCanvas.canvas)) {
+                return;
+            }
+            App.welcomeCanvas.ctx = App.welcomeCanvas.canvas.getContext('2d')
+            App.welcomeCanvas.resetSize()
+            App.welcomeCanvas.resetDots()
+            document.addEventListener('mousemove', App.welcomeCanvas.mousemove)
+            document.addEventListener('mouseout', App.welcomeCanvas.mouseout)
+            App.welcomeCanvas.animationLoop()
+        },
+        mousemove: function (e) {
+            if (!Utils.Function.empty(App.MOBILE)) {
+                App.welcomeCanvas.mouse.x = e.x
+                App.welcomeCanvas.mouse.y = e.y
+            } else {
+                const myMenu = document.getElementById('myMenu');
+                if (!Utils.Function.empty(myMenu)) {
+                    App.welcomeCanvas.mouse.x = e.x - myMenu.clientWidth
+                } else {
+                    App.welcomeCanvas.mouse.x = e.x
+                }
+            }
+        },
+        mouseout: function (e) {
+            App.welcomeCanvas.mouse.x = null
+            App.welcomeCanvas.mouse.y = null
+        },
+        resetSize: function () {
+            App.welcomeCanvas.width  = App.welcomeCanvas.canvas.width  = window.innerWidth
+            App.welcomeCanvas.height = App.welcomeCanvas.canvas.height = window.innerHeight
+        },
+        resetDots: function () {
+            App.welcomeCanvas.dots = [];
+            for (let i = 0; i < 1000; i++) {
+                App.welcomeCanvas.dots.push(new App.welcomeCanvas.Dots())
+            }
+        },
+        animationLoop: function () {
+            App.welcomeCanvas.ctx.clearRect(0, 0, App.welcomeCanvas.width, App.welcomeCanvas.height)
+            App.welcomeCanvas.ctx.globalCompositeOperation = 'lighter'
+            App.welcomeCanvas.draw()
+            requestAnimationFrame(App.welcomeCanvas.animationLoop)
+        },
+        draw: function () {
+            App.welcomeCanvas.dots.forEach(dot => {
+                dot.update()
+                dot.draw()
+            })
+        },
+        Dots: class {
+            constructor() {
+                this.constructed = true
+                this.reset()
+            }
+            reset() {
+                this.x = Utils.Math.getRandomBetween(0, App.welcomeCanvas.width)
+                this.y = Utils.Math.getRandomBetween(App.welcomeCanvas.height - 10, App.welcomeCanvas.height - 10)
+
+                this.baseX = this.x
+                this.baseY = this.y
+
+                if (App.welcomeCanvas.mouse.x) {
+                    this.centerX = App.welcomeCanvas.mouse.x
+                } else {
+                    this.centerX = Utils.Math.getRandomBetween(0, App.welcomeCanvas.width)
+                }
+
+                this.size = Utils.Math.getRandomBetween(2, 4)
+
+                if (this.constructed) {
+                    // this.rgba = [182, 112, 16, 1]
+                    this.rgba = [0, 170, 255, 1]
+                    // this.rgba = [112, 111, 211, 1]
+                } else {
+                    this.rgba = [0, 0, 0, 0]
+                }
+
+                this.time = 0
+                this.ttl = Utils.Math.getRandomBetween(100, 300)
+            }
+
+            draw() {
+                App.welcomeCanvas.ctx.beginPath()
+                App.welcomeCanvas.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+                App.welcomeCanvas.ctx.fillStyle = `rgba(${this.rgba[0]}, ${this.rgba[1]}, ${this.rgba[2]}, ${this.rgba[3]})`
+                App.welcomeCanvas.ctx.fill()
+                App.welcomeCanvas.ctx.closePath()
+            }
+
+            update() {
+                if (this.time <= this.ttl) {
+                    let progess = 1 - (this.ttl - this.time) / this.ttl
+                    this.x = this.baseX + ((this.centerX - this.baseX) * Utils.Math.easeOutElastic(progess))
+                    this.y = this.baseY - (this.baseY * Utils.Math.easeOutQuad(progess))
+                    this.time++
+                } else {
+                    this.reset()
+                }
+            }
+        }
     },
     initTechCanvas: function () {
         const myTechCanvas = document.getElementById("myTechCanvas");
@@ -412,7 +526,7 @@ const App = {
 
             logo.setAttribute('width', 100);
             logo.src = App.jlLogoImg;
-            const text = Utils.Function.choose(App.myThoughts),
+            const text = Utils.Math.choose(App.myThoughts),
             measureText = Utils.Function.measureText(text);
             myThoughts.style.margin = '20px auto';
             myThoughts.style.width = `${(measureText.width / 2)}px`;
@@ -467,10 +581,7 @@ const App = {
             this.init();
             this.increase(speed, function () {
                 
-                Utils.Function.ajax(url, function (response, httpCode) {
-                    console.log('Done');
-                    console.log(response, httpCode);
-    
+                Utils.Function.ajax(url, function (response, httpCode) {    
                     if (Utils.Function.empty(response)) {
                         App.loader.loadPageError(httpCode);
                     } else {
@@ -502,6 +613,9 @@ const App = {
             if (e.currentTarget.innerWidth < 1200) {
                 App.MOBILE = true;
             } else {App.MOBILE = false;}
+
+            App.welcomeCanvas.resetSize()
+            App.welcomeCanvas.resetDots()
 		});
     }
 };
