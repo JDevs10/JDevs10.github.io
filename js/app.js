@@ -229,6 +229,7 @@ const App = {
             y: null
         },
         dots: [],
+        animationId: null,
         init: function () {
             App.welcomeCanvas.canvas = document.getElementById('welcomeCanvas')
             if (Utils.Function.empty(App.welcomeCanvas.canvas)) {
@@ -239,6 +240,18 @@ const App = {
             App.welcomeCanvas.resetDots()
             document.addEventListener('mousemove', App.welcomeCanvas.mousemove)
             document.addEventListener('mouseout', App.welcomeCanvas.mouseout)
+            window.addEventListener('resize', function(e) {
+                if (App.MOBILE) {
+                    cancelAnimationFrame(App.welcomeCanvas.animationId)
+                    App.welcomeCanvas.animationId = null
+                } else {
+                    App.welcomeCanvas.resetSize()
+                    App.welcomeCanvas.resetDots()
+                    if (Utils.Function.empty(App.welcomeCanvas.animationId)) {
+                        App.welcomeCanvas.animationLoop()
+                    }
+                }
+            });
             App.welcomeCanvas.animationLoop()
         },
         mousemove: function (e) {
@@ -269,10 +282,12 @@ const App = {
             }
         },
         animationLoop: function () {
+            if (!Utils.Function.empty(App.MOBILE)) {return}
+
             App.welcomeCanvas.ctx.clearRect(0, 0, App.welcomeCanvas.width, App.welcomeCanvas.height)
             App.welcomeCanvas.ctx.globalCompositeOperation = 'lighter'
             App.welcomeCanvas.draw()
-            requestAnimationFrame(App.welcomeCanvas.animationLoop)
+            App.welcomeCanvas.animationId = requestAnimationFrame(App.welcomeCanvas.animationLoop)
         },
         draw: function () {
             App.welcomeCanvas.dots.forEach(dot => {
@@ -613,9 +628,6 @@ const App = {
             if (e.currentTarget.innerWidth < 1200) {
                 App.MOBILE = true;
             } else {App.MOBILE = false;}
-
-            App.welcomeCanvas.resetSize()
-            App.welcomeCanvas.resetDots()
 		});
     }
 };
