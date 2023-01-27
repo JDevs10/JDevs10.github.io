@@ -240,6 +240,17 @@ const App = {
             App.welcomeCanvas.resetDots()
             document.addEventListener('mousemove', App.welcomeCanvas.mousemove)
             document.addEventListener('mouseout', App.welcomeCanvas.mouseout)
+            document.addEventListener('scroll', () => {
+                if (Utils.Function.empty(App.MOBILE) && !Utils.Function.empty(App.welcomeCanvas.canvas)) {
+                    const canvasRec = App.welcomeCanvas.canvas.getBoundingClientRect()
+                    if ((canvasRec.x + canvasRec.width) < 0 || (canvasRec.y + canvasRec.height) < 0|| (canvasRec.x > window.innerWidth || canvasRec.y > window.innerHeight)) {
+                        cancelAnimationFrame(App.welcomeCanvas.animationId)
+                        App.welcomeCanvas.animationId = null
+                    } else if (Utils.Function.empty(App.welcomeCanvas.animationId)) {
+                        App.welcomeCanvas.animationLoop()
+                    }
+                }
+            });
             window.addEventListener('resize', function(e) {
                 if (App.MOBILE) {
                     cancelAnimationFrame(App.welcomeCanvas.animationId)
