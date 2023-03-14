@@ -6,7 +6,7 @@ export const Utils = {
          * @returns Boolean
          */
         empty: function (value) {
-            if (value === null || value === undefined || value === false) {
+            if (value === '' || value === null || value === undefined || value === false) {
                 return true;
             } else if (Array.isArray(value)) {
                 if (value.length > 0) {
@@ -42,11 +42,17 @@ export const Utils = {
             httpRequest.onreadystatechange = function() {
                 try {
                     if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                        callback(httpRequest.responseText, httpRequest.status);
+                        callback({
+                            response: httpRequest.responseText, 
+                            httpCode: httpRequest.status
+                        });
                     }
-                } catch (e) {console.error('Ajax ERROR', e);}
+                } catch (e) {
+                    console.error('Catch :: Ajax ERROR', e);
+                    callback({error: e});
+                }
             }
-            httpRequest.onerror = function(e) {console.error('Ajax ERROR', e);}
+            httpRequest.onerror = function(e) {console.error('onError :: Ajax ERROR', e); callback({error: e});}
             httpRequest.open('GET', url);
             httpRequest.setRequestHeader('Content-Type', 'text/plain');
             httpRequest.overrideMimeType('text/plain');
