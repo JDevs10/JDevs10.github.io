@@ -86,6 +86,11 @@ h2:after {
     left: -1rem;
     bottom: -2rem;
 }
+.popup h1::before, .popup h1::after,
+.popup h2::before, .popup h2::after,
+.popup h3::before, .popup h3::after {
+    display: none;
+}
 .bg-section-openTag:before {
     content: '<section>';
     font-family: 'La Belle Aurore',cursive;

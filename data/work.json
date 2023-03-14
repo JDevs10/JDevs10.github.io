@@ -9,7 +9,7 @@
         "header": "Full stack mobile app developer",
         "section": "Big Data Consulting",
         "date": "2019-2021",
-        "footer": "- Produce and analyze specifications.\n- Develop the application from the specifications provided.\n- Provid les tests and the documentation."
+        "footer": "- Produce and analyze specifications.\n- Develop the application from the specifications provided.\n- Provid automatic/unit tests and update the documentation."
     },
     {
         "header": "EDI consultant | Support N3 Tradexpress",
@@ -21,6 +21,6 @@
         "header": "Full stack Angular PHP developer",
         "section": "Maarch",
         "date": "2022-today",
-        "footer": ""
+        "footer": "- Analyse/Produce new features.\n- Keep existing applications up to date.\n- Participate to keep documentations updated.\n- Provid automatic/unit tests."
     }
 ]

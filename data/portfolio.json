@@ -1,80 +1,44 @@
 [
     {
-        "title": "iSales",
-        "appLink": "https://play.google.com/store/apps/details?id=com.iSales_Pro__",
-        "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png"
-    },
-    {
-        "title": "iStock",
-        "appLink": "https://play.google.com/store/apps/details?id=com.iStock",
-        "thumbnail": "img/istock/istock-presentation-store.png",
-        "link": "img/istock/iStock-scaled-design-wireframe.png"
-    },
-    {
-        "title": "iInventaire",
-        "appLink": "https://play.google.com/store/apps/details?id=com.iinventaire",
-        "thumbnail": "img/iinventaire/iinventaire-presentation-store.png",
-        "link": "img/iinventaire/iInventaire-scaled-design-wireframe.png"
-    },
-    {
-        "title": "iScreen",
-        "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png"
-    },
-    {
-        "title": "iNetty Teams",
-        "appLink": "https://play.google.com/store/apps/details?id=com.inettyforteams",
-        "thumbnail": "img/inetty/inetty-presentation-store.png",
-        "link": "img/inetty/iNetty-Teams-scaled-design-wireframe.png"
-    },
-    {
-        "title": "iNetty",
-        "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png"
-    },
-    {
-        "title": "EDIConnect",
-        "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png"
-    },{
-        "title": "Connecteur EBP",
-        "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png"
-    },
-    {
-        "title": "Analyst",
-        "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png"
-    },
-    {
-        "title": "AudioTest",
-        "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png"
-    },
-    {
         "title": "MaarchCourrier",
         "appLink": "https://preview.maarchcourrier.com",
         "thumbnail": "img/MaarchCourrier/logo_only.svg",
-        "link": "img/Classified-Stamp.png",
-        "documentation": "https://docs.maarch.org"
+        "wireframeNworkflow": "",
+        "description": "<b>Maarch Courrier</b> est un système complet de Gestion Électronique de Documents (GED) et de Gestion Électronique de Courrier (GEC).<br>Il traite le courrier Arrivée, Départ, Interne, ainsi que les documents de GED avec une grande richesse fonctionnelle.<br>Maarch Courrier est prêt à l'emploi, <b>entièrement libre</b>, et utilisable pour les besoins simples comme pour les plus complexes.<br>Ce guide est adapté à la démonstration en ligne https://demo.maarchcourrier.com.<br>Il présente l'application paramétrée pour la gestion du courrier et des documents d'une collectivité. Procédez dans l'ordre de façon à ne pas perdre le guide !<br>Vous trouverez sur nos sites de nombreuses informations utiles pour faire plus ample connaissance avec Maarch Courrier : <ul><li>Prérequis techniques (Serveur et Poste client) : <a href=\"https://docs.maarch.org/MaarchCourrier/guat/guat_prerequisites/home.html\" target=\"_blank\">Voir les prérequis</a></li><li>Manuel Administrateur <a href=\"https://docs.maarch.org/MaarchCourrier/\" target=\"_blank\">https://docs.maarch.org/MaarchCourrier/</a></li><li>Communauté Maarch : <a href=\"https://community.maarch.org\" target=\"_blank\">https://community.maarch.org</a>.</li></ul>"
     },
     {
         "title": "MaarchParapheur",
         "appLink": "https://preview.maarchparapheur.com",
         "thumbnail": "img/MaarchParapheur/favicon.png",
-        "link": "img/Classified-Stamp.png",
-        "documentation": "https://docs.maarch.org"
+        "wireframeNworkflow": "",
+        "description": "Maarch Parapheur répond à ces besoins avec l’outil de parapheur électronique open source. Que vous soyez une collectivité ou une administration disposant ou non de Maarch Courrier, ou toute autre organisation ayant ces besoins, cette solution est faite pour vous.<br>Issu de nouvelles technologies spécialisées dans l’ergonomie du logiciel métier telle qu’Angular, le parapheur électronique présente une interface fluide et agréable à la navigation.<br>Connecté à Maarch Courrier ou en totale autonomie, ce parapheur dernière génération permet l’annotation, le paraphe électronique, la signature en mode griffe et avec certificat électronique de n’importe quel document PDF, et ce pour tous les intervenants du circuit.<br><br><h3>Les principales fonctionnalités de Maarch Parapheur</h3><ul><li>Annotation et écriture manuscrite</li><li>Signature électronique</li><li>Un environnement opérationnel complet</li></ul>Vous trouverez sur nos sites de nombreuses informations utiles pour faire plus ample connaissance avec Maarch Parapheur : <ul><li>Prérequis techniques (Serveur et Poste client) : <a href=\"https://docs.maarch.org/MaarchParapheur/guat/guat_prerequisites/home.html\" target=\"_blank\">Voir les prérequis</a></li><li>Manuel Administrateur <a href=\"https://docs.maarch.org/MaarchParapheur/\" target=\"_blank\">https://docs.maarch.org/MaarchParapheur/</a></li><li>Communauté Maarch : <a href=\"https://community.maarch.org\" target=\"_blank\">https://community.maarch.org</a>.</li></ul>"
     },
     {
-        "title": "MaarchCapture",
+        "title": "Pacman",
+        "appLink": "https://jdevs10.github.io/Pacman-Web-Game",
         "thumbnail": "img/Classified-Stamp.png",
-        "link": "img/Classified-Stamp.png",
-        "documentation": "https://docs.maarch.org"
+        "wireframeNworkflow": "https://jacekjeznach.com/wp-content/uploads/2017/10/Influencer-Marketing-Agency-Social-Influencing-London-e1574675715647-scaled.jpg",
+        "description": "Creating a fun Pacman game on the web :)"
     },
     {
-        "title": "Test",
-        "thumbnail": "https://jacekjeznach.com/wp-content/uploads/2017/10/Bez-nazwy-3-e1508357920340.jpg",
-        "link": "https://jacekjeznach.com/wp-content/uploads/2017/10/Influencer-Marketing-Agency-Social-Influencing-London-e1574675715647-scaled.jpg"
+        "title": "iStock",
+        "appLink": "https://play.google.com/store/apps/details?id=com.iStock",
+        "thumbnail": "img/istock/istock-presentation-store.png",
+        "wireframeNworkflow": "img/istock/iStock-scaled-design-wireframe.png",
+        "description": "iStock est une application de gestion d'entrepôt sur un PDA Zebra développé par Big Data Consulting. L'application permet à vos commerciaux dans l'entrepôt de préparer les commandes avant l'envoi par un livreur directement sur le PDA. Elle a été spécialement conçue pour les professionnels. C’est un logiciel unique en son genre."
+    },
+    {
+        "title": "iInventaire",
+        "appLink": "https://play.google.com/store/apps/details?id=com.iinventaire",
+        "thumbnail": "img/iinventaire/iinventaire-presentation-store.png",
+        "wireframeNworkflow": "img/iinventaire/iInventaire-scaled-design-wireframe.png",
+        "description": "iInventaire est une application de gestion d'entrepôt sur un PDA Zebre développé par Big Data Consulting. L'application permet à vos commerciaux dans l'entrepôt d'actualiser ces inventaires directement sur le PDA."
+    },
+    {
+        "title": "iNetty Team",
+        "appLink": "https://play.google.com/store/apps/details?id=com.inettyforteams",
+        "thumbnail": "img/inetty/inetty-presentation-store.png",
+        "wireframeNworkflow": "img/inetty/iNetty-Teams-scaled-design-wireframe.png",
+        "description": "iNetty Team est une solution qui vous accompagne depuis la planification jusqu’à la réalisation de vos interventions sur le terrain et optimise la remontée et le traitement de vos informations."
     }
 ]
