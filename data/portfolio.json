@@ -1,13 +1,13 @@
 [
     {
-        "title": "MaarchCourrier",
+        "title": "Maarch Courrier",
         "appLink": "https://preview.maarchcourrier.com",
         "thumbnail": "img/MaarchCourrier/logo_only.svg",
         "wireframeNworkflow": "",
         "description": "<b>Maarch Courrier</b> est un système complet de Gestion Électronique de Documents (GED) et de Gestion Électronique de Courrier (GEC).<br>Il traite le courrier Arrivée, Départ, Interne, ainsi que les documents de GED avec une grande richesse fonctionnelle.<br>Maarch Courrier est prêt à l'emploi, <b>entièrement libre</b>, et utilisable pour les besoins simples comme pour les plus complexes.<br>Ce guide est adapté à la démonstration en ligne https://demo.maarchcourrier.com.<br>Il présente l'application paramétrée pour la gestion du courrier et des documents d'une collectivité. Procédez dans l'ordre de façon à ne pas perdre le guide !<br>Vous trouverez sur nos sites de nombreuses informations utiles pour faire plus ample connaissance avec Maarch Courrier : <ul><li>Prérequis techniques (Serveur et Poste client) : <a href=\"https://docs.maarch.org/MaarchCourrier/guat/guat_prerequisites/home.html\" target=\"_blank\">Voir les prérequis</a></li><li>Manuel Administrateur <a href=\"https://docs.maarch.org/MaarchCourrier/\" target=\"_blank\">https://docs.maarch.org/MaarchCourrier/</a></li><li>Communauté Maarch : <a href=\"https://community.maarch.org\" target=\"_blank\">https://community.maarch.org</a>.</li></ul>"
     },
     {
-        "title": "MaarchParapheur",
+        "title": "Maarch Parapheur",
         "appLink": "https://preview.maarchparapheur.com",
         "thumbnail": "img/MaarchParapheur/favicon.png",
         "wireframeNworkflow": "",
