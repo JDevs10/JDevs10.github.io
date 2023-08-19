@@ -147,18 +147,22 @@ const App = {
 
         const navContent = document.createElement('nav');
         navContent.classList.add('main-menu_nav');
-        this.mainMenuNav.forEach(elem => {
-            const btn = document.createElement('a');
-            btn.addEventListener('click', function() {
-                if (App.MOBILE) {
-                    App.hideMenu();
-                }
-                App.loader.loadPage(`${elem.rel}.html`);
-            });
-            btn.innerHTML = elem.label;
-            btn.rel = elem.rel;
-            btn.style.cursor = 'pointer';
-            navContent.appendChild(btn);
+        this.mainMenuNav.forEach(async (elem) => {
+            const isUrlAccessible = await Utils.Function.isUrlAccessible(`${elem.rel}.html`).valueOf();
+
+            if (isUrlAccessible) {
+                const btn = document.createElement('a');
+                btn.addEventListener('click', function() {
+                    if (App.MOBILE) {
+                        App.hideMenu();
+                    }
+                    App.loader.loadPage(`${elem.rel}.html`);
+                });
+                btn.innerHTML = elem.label;
+                btn.rel = elem.rel;
+                btn.style.cursor = 'pointer';
+                navContent.appendChild(btn);
+            }
         });
         myMenu.appendChild(navContent);
 
@@ -519,13 +523,17 @@ const App = {
 
 
                         if (!Utils.Function.empty(item.appLink)) {
-                            const appLink = document.createElement('a');
-                            appLink.href = item.appLink;
-                            appLink.innerHTML = App.IconManager.getLiveIcon();
-                            appLink.title = `Demo : ${item.title}`;
-                            appLink.className = 'appLink';
-                            appLink.target = '_blank';
-                            popupContent.appendChild(appLink);
+                            const isUrlAccessible = await Utils.Function.isUrlAccessible(item.appLink).valueOf();
+
+                            if (isUrlAccessible) {
+                                const appLink = document.createElement('a');
+                                appLink.href = item.appLink;
+                                appLink.innerHTML = App.IconManager.getLiveIcon();
+                                appLink.title = `Demo : ${item.title}`;
+                                appLink.className = 'appLink';
+                                appLink.target = '_blank';
+                                popupContent.appendChild(appLink);
+                            }
                         }
 
                         if (!Utils.Function.empty(item.wireframeNworkflow)) {
