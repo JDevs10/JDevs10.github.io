@@ -1,202 +1,161 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Portfolio | Jean-Laurent DUZANT</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!-- <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript> -->
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bg-styles.css">
+    <link rel="stylesheet" href="css/responsible.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <title>Portfolio JL</title>
+    <script src="js/tagcanvas.js"></script>
+    <script type="module" src="js/utils.js"></script>
+    <script src="js/notifyMe.js"></script>
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+    <menu id="myMenu" class="main-menu"></menu>
+    
+    <div id="myContainer">
+        <div class="page-outer">
+            <span class="tags top-tags"> &lt;html&gt; <br> </span>
+            <div class="page-inner">
+                <section id="section-home" class="section-full section-home js-page-home loaded">
+                    <div class="text-zone">
+                        <h1 aria-label="Hello,I’m Jean-Laurent,Full-Stack Developer" class="blast-root"></h1>
+                        <p class="gray-text">Mobile App Developer / Web App Developer</p> <br> 
+                        <a rel="contact" href="contact.html" class="flat-button">
+                            <div> 
+                                <span class="bg"></span>
+                                <span class="base"></span> 
+                                <span class="text">Contact me!</span>
+                            </div> 
+                        </a>
+                    </div>
+                    
+                    <canvas style="position: absolute;left:0;z-index: -1;" id="welcomeCanvas"></canvas>
+                    
+                    <div class="scroll-down"> 
+                        <span id="sd1">scroll down</span> &nbsp;
+                        <span id="sd2">
+                            <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-down fa-w-14 fa-5x">
+                                <path fill="currentColor" d="M443.5 248.5l-7.1-7.1c-4.7-4.7-12.3-4.7-17 0L241 419.9V44c0-6.6-5.4-12-12-12h-10c-6.6 0-12 5.4-12 12v375.9L28.5 241.4c-4.7-4.7-12.3-4.7-17 0l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l211 211.1c4.7 4.7 12.3 4.7 17 0l211-211.1c4.8-4.8 4.8-12.3.1-17z" class=""></path>
+                            </svg>
+                        </span>
+                    </div>
+                </section>
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>J-L Portfolio</h1>
-						<p>A showcase of my projects and my abilities.</p>
-						<ul class="actions">
-							<li><a href="#nav" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+                <section id="section-work" data-load="work" class="section-full section-work js-way">
+                    <div class="fake-big">Work</div>
+                    <div class="text-zone">
+                        <div>
+                            <header>
+                                <h2 aria-label="My Portfolio" class="blast-root"></h2>
+                            </header>
+                            <br>
+                            <p>A small presentation of my projects. I did them all together with amazing colleges. <br>This is the start of my album projects. Interested in seeing more ? Visit <a rel="work" href="portfolio.html">my work</a> page.</p>
+                        </div>
+                        <div> 
+                            <a rel="work" href="/portfolio.html" class="flat-button">
+                                <div> 
+                                    <span class="bg"></span> 
+                                    <span class="base"></span> 
+                                    <span class="text">See more!</span>
+                                </div> 
+                            </a>
+                        </div>
+                    </div>
+                    <br><br><br>
+                    <div id="portfolio-wall" class="fake-magicwall bg-section-openTag bg-section-closeTag"></div>
+                    <br><br><br>
+                </section>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Welcome</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/jean-laurent-duzant-580287171" class="icon fa-linkedin" target="_blank"><span class="label">Instagram</span></a></li>
-							<li><a href="https://github.com/JDevs10" class="icon fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+                <section id="section-about" data-load="about" class="section-full section-about js-way">
+                    <div class="scroll-down"> 
+                        <span id="sd1">scroll down</span> &nbsp;
+                        <span id="sd2">
+                            <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-down fa-w-14 fa-5x">
+                                <path fill="currentColor" d="M443.5 248.5l-7.1-7.1c-4.7-4.7-12.3-4.7-17 0L241 419.9V44c0-6.6-5.4-12-12-12h-10c-6.6 0-12 5.4-12 12v375.9L28.5 241.4c-4.7-4.7-12.3-4.7-17 0l-7.1 7.1c-4.7 4.7-4.7 12.3 0 17l211 211.1c4.7 4.7 12.3 4.7 17 0l211-211.1c4.8-4.8 4.8-12.3.1-17z" class=""></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="text-zone">
+                            <header>
+                                <h2 aria-label="What I'm into?" class="blast-root"></h2>
+                            </header>
+                            <br>
+                            <p>The primary area of my interest is app development. My passion for code had begun when i started doing C / C ++ programs for Arduino during my robotics class in high school. Afterwards web development came into play, after my high school degree i discovered mobile development and made my first app to monitor and control air conditioner unit at home.</p>
+                            <p>Since 2019 i've work in the same company after my studies, during my time had many opportunities to work in different projects (desktop, mobile and web). It allowed me to gain a certain amount of experience, increase my skills and manage a project.</p>
+                            <p>More about my experience and work you'll find in <a rel="skills" href="skills.html">Skills</a> and <a rel="about" href="about.html">About</a>.</p> 
+                        </div>
+                        <div class="skills-charts">
+                            <div id="myTechCanvasContainer">
+                                <canvas id="myTechCanvas" width="500" height="500"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </section>
 
-				<!-- Main -->
-					<div id="main">
+                <section id="section-contact" class="section-full section-contact">
+                    <div class="row" style="width: 100%;">
+                        <div class="fake-big">@</div>   
+                        <div class="text-zone">
+                            <header>
+                                <h2 aria-label="Contact me" class="blast-root"></h2>
+                            </header>
+                            <p>Feel free to contact me by using the form.</p>
+                            <div class="contact-form">
+                                <form id="contact" autocomplete="off">
+                                    <ul>
+                                        <li class="half animated fadeInUp"> 
+                                            <input id="contactInputName" class="input__field input__field--hoshi" placeholder="Name" type="text" name="name"> 
+                                            <label class="input__label input__label--hoshi input__label--hoshi-color-2"></label>
+                                        </li>
+                                        <li class="half animated fadeInUp"> 
+                                            <input id="contactInputEmail" class="input__field input__field--hoshi" placeholder="Email" type="email" name="email"> 
+                                            <label class="input__label input__label--hoshi input__label--hoshi-color-2"></label>
+                                        </li>
+                                        <li class="animated fadeInUp"> 
+                                            <input id="contactInputSubject" class="input__field input__field--hoshi" placeholder="Subject" type="text" name="subject"> 
+                                            <label class="input__label input__label--hoshi input__label--hoshi-color-2"></label>
+                                        </li>
+                                        <li class="animated fadeInUp">
+                                            <textarea id="contactInputMsg" class="input__field input__field--hoshi" placeholder="Message" name="msg"></textarea>
+                                            <label class="input__label input__label--hoshi input__label--hoshi-color-2"></label>
+                                        </li>
+                                        <li class="submit animated fadeInUp"> 
+                                            <a onclick="Notify.send({});" id="submit-form" class="flat-button submit-form">
+                                                <div> 
+                                                    <span class="bg"></span> 
+                                                    <span class="base"></span> 
+                                                    <span class="text">Send message!</span>
+                                                </div> 
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-map">
+                            <div class="inf-map">
+                                I am based in,<br> 
+                                Paris 75020, France<br><br>
+                                <span><span>@</span>: jl.duzant97150@outlook.com</span>
+                            </div>
+                            <iframe class="ifram-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42002.74298274377!2d2.325257346170233!3d48.854941200403076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sen!2sfr!4v1621189572253!5m2!1sen!2sfr" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </section>
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<h2>My name is <br>Jean-Laurent Duzant</h2>
-									<p>The fact to develop websites or mobile applications so that people around the world can used them at their needs, <br> 
-										give me the energy to wake up early each day and continue my passion.</p>
-								</header>
-								
-								<h2 class="first-project"><a href="https://auto-savior.firebaseapp.com" target="_blank" >Auto Savior</h2>
-								<a href="https://auto-savior.firebaseapp.com" class="image main" target="_blank"><img src="images/auto-savior.png" alt="auto-savior img" /></a>
-									<div>
-										<p>Auto Savior is a website that store your passwords which are encrypted before store saving in Firebase database.<br>
-										Test acount is available:<br>
-										Login : auto-savior-test@gmail.com<br>
-										Password : admin2019</p>
-									</div>
-									<div class="row technology">
-										<p class="tech-info">Technology used: </p>
-										<p>AngularJs 7</p>
-										<p>Firebase Auth</p>
-										<p>Firebase RealTime Database</p>
-									</div>
-							</article>
-
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<h2><a href="https://play.google.com/store/apps/details?id=com.analyst.fragmenttest" target="_blank">Analyst</h2>
-									</header>
-									<a href="https://play.google.com/store/apps/details?id=com.analyst.fragmenttest" target="_blank" class="image fit resize"><img src="images/analyst_icon.png" alt="Analyst img" /></a>
-									<p>Analyst is an application to help you visualise your spendings with different graph at your disposal.</p>
-									<div class="row technology">
-										<p class="tech-info">Technology used: </p>
-										<p>Android Studio</p>
-										<p>Java</p>
-										<p>SqlLite</p>
-									</div>
-									<ul class="actions special">
-										<li><a href="https://github.com/JDevs10/Analyst" target="_blank" class="button">View Source Code</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://jdevs10.github.io/Rock-Paper-Scissors-Game" target="_blank">Rock Paper Scissors</a></h2>
-									</header>
-									<a href="https://jdevs10.github.io/Rock-Paper-Scissors-Game" class="image fit" target="_blank"><img src="images/Rock-Paper-Scissors-Game.png" alt="Rock-Paper-Scissors-Game img" /></a>
-									<p>Work on the basics of javascript by creating a fun rock paper scissors game.</p>
-									<div class="row technology">
-										<p class="tech-info">Technology used: </p>
-										<p>Html5</p>
-										<p>Css3</p>
-										<p>JavaScript ES6</p>
-									</div>
-									<ul class="actions special">
-										<li><a href="https://github.com/JDevs10/Rock-Paper-Scissors-Game" target="_blank" class="button">View Source Code</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="https://jdevs10.github.io/Star-Rating" target="_blank">Star Rating</a></h2>
-									</header>
-									<a href="https://jdevs10.github.io/Star-Rating" target="_blank" class="image fit"><img src="images/star-rating.png" alt="Star Rating img" /></a>
-									<p>Star Rating is an interface that takes a JavaScript object of Telephones with some ratings and transform it into a UI with Font Awesome star icons. Each telephone rating can be changed by a dynamic form.</p>
-									<div class="row technology">
-										<p class="tech-info">Technology used: </p>
-										<p>Html5</p>
-										<p>Css3</p>
-										<p>JavaScript ES6</p>
-										<p>Font Awesome</p>
-									</div>
-									<ul class="actions special">
-										<li><a href="https://github.com/JDevs10/Star-Rating" target="_blank" class="button">View Source Code</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2>Shopping Drive</h2>
-									</header>
-									<a href="#" class="image fit resize"><img src="images/shopping-Drive.jpg" alt="" /></a>
-									<p>Shopping Drive is an order application on Android that facilitates small and medium enterprises (SME). The customer travels the shelves of his various local merchants in a few clicks to find all his products that he needs, while staying at home or returning from work.</p>
-									<p class="in-development">App in development.</p>
-									<div class="row technology">
-										<p class="tech-info">Technology used: </p>
-										<p>Android Studio</p>
-										<p>Firebase Auth</p>
-										<p>Firebase RealTime Database</p>
-										<p>Firebase Storage</p>
-									</div>
-									<ul class="actions special">
-										<li><a href="https://github.com/JDevs10/Shopping-Drive" target="_blank" class="button">View Source Code</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a href="http://cnrsv.org/" target="_blank">CNRSV</a></h2>
-									</header>
-									<a href="http://cnrsv.org/" target="_blank" class="image fit"><img src="images/cnrsv.png" alt="" /></a>
-									<p>CNRSV is a website for practitioners in France and abroad. Their clients can schedule appointments with a calendar. Created with Wordpress.</p>
-									<div class="row technology">
-										<p class="tech-info">Technology used: </p>
-										<p>Wordpress</p>
-									</div>
-									<ul class="actions special">
-										<li><a href="#sorry" class="button">Scource Code can not be provided</a></li> <!-- <a href="#" class="button">Full Story</a> -->
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April 7, 2017</span>
-										<h2><a href="https://play.google.com/store/apps/details?id=com.iSales" target="_blank">iSales</h2>
-									</header>
-									<a href="https://play.google.com/store/apps/details?id=com.iSales" target="_blank" class="image fit resize"><img src="images/iSales.png" alt="iSales image" /></a>
-									<p>iSales is a tablet order application developed by Big Data Consulting. The application allows your field sales staff to take orders directly on the tablet.</p>
-									<ul class="actions special">
-										<li><a href="#sorry" class="button">Scource Code can not be provided</a></li>
-									</ul>
-								</article>
-							</section>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<iframe height="100%" width="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.1906704438184!2d2.4010846152015013!3d48.854574408930105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e672787da24705%3A0x4c5fdd1f4a843f17!2s72+Rue+des+Haies%2C+75020+Paris!5e0!3m2!1sen!2sfr!4v1544745792813" frameborder="0" style="border:0" allowfullscreen></iframe>
-						</section>
-						<section class="split contact">
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">+33 7 66 11 29 37</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="mailto:jeanlaurent.duzant@edu.ecetech.fr?subject=Contacting JL from Portfolio">jeanlaurent.duzant@edu.ecetech.fr</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://www.instagram.com/jeanlaurentduzant" class="icon fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
-									<li><a href="https://www.linkedin.com/in/jean-laurent-duzant-580287171" class="icon fa-linkedin" target="_blank"><span class="label">Instagram</span></a></li>
-									<li><a href="https://github.com/JDevs10" class="icon fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
-
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>Made with <i style="color:red" class="icon fa-heart"></i> <a href="https://html5up.net"> JDevs </a></li></ul>
-					</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+            </div>
+            <span class="tags bottom-tags"> <br> &lt;/html&gt; </span>
+        </div>
+    </div>
+</body>
 </html>
