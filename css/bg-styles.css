@@ -109,25 +109,6 @@ h2:after {
     margin-top: 3rem;
     margin-left: 2rem
 }
-.contact-form form:before {
-    content: '<form>';
-    font-family: 'La Belle Aurore',cursive;
-    color: #515152;
-    font-size: 18px;
-    position: absolute;
-    bottom: 100%;
-    left: -1rem;
-}
-.contact-form form:after {
-    display: block !important;
-    content: '</form>';
-    font-family: 'La Belle Aurore',cursive;
-    color: #515152;
-    font-size: 18px;
-    position: absolute;
-    top: 100%;
-    left: -1rem;
-}
 .input__label--hoshi:before, .input__label--hoshi:after {
     content: '';
     position: absolute;

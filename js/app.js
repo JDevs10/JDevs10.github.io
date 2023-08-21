@@ -72,6 +72,7 @@ const App = {
         this.initTechCanvas();
         this.initPortfolioWall();
         this.initWorkExperience();
+        this.initContactInfo();
         this.initResponsive();
 
         document.addEventListener('error', (event) => {
@@ -410,8 +411,9 @@ const App = {
         App.myTechCanvas = myTechCanvas;
     },
     initH1H2s: function () {
-        const h1h2Found = document.querySelectorAll("h1, h2");
-        h1h2Found.forEach(elem => {
+        const importantHs = ['h1', 'h2'];
+        const h1h2h3Found = document.querySelectorAll("h1, h2, h3");
+        h1h2h3Found.forEach(elem => {
             const title = elem.ariaLabel ?? elem.attributes.getNamedItem('aria-label').value;
             
             const imgJ = document.createElement('img');
@@ -437,20 +439,25 @@ const App = {
                 const span = document.createElement('span');
                 span.style.opacity = 1;
                 if (char !== ' ') {
-                    if (char === 'J') {
-                        elem.appendChild(imgJ);
-                        continue;
-                    } else if (char === 'L') {
-                        elem.appendChild(imgL);
-                        continue;
+                    if (importantHs.includes(elem.nodeName.toLocaleLowerCase())) {
+                        if (char === 'J') {
+                            elem.appendChild(imgJ);
+                            continue;
+                        } else if (char === 'L') {
+                            elem.appendChild(imgL);
+                            continue;
+                        }
                     }
                     span.classList.add('blast');
                     span.classList.add('spin-me');
                     span.setAttribute('aria-hidden', true);
                     span.innerHTML = char;
-                } else {
+                } else if (importantHs.includes(elem.nodeName.toLocaleLowerCase())) {
                     span.classList.add('space-right');
+                } else {
+                    span.innerHTML = char;
                 }
+            
                 elem.appendChild(span);
                 if (char === ',' || char === '&') {
                     elem.appendChild(document.createElement('br'));
@@ -598,6 +605,24 @@ const App = {
                 });
             }
         });
+    },
+    initContactInfo: function () {
+        const workWall = document.getElementById("section-contact");
+        if (Utils.Function.empty(workWall)) {
+            return;
+        }
+
+        const elements = document.querySelectorAll('.cFormInput');
+        elements.forEach((element, key) => {
+            element.addEventListener('input', function (event) {
+                if (element.textContent.length > 0) {
+                    element.classList.add('contentNone');
+                } else {
+                    element.classList.remove('contentNone');
+                }
+            });
+        });
+
     },
     /**
      * @description The loader div/obj
