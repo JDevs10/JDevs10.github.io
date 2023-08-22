@@ -96,6 +96,8 @@ export const Utils = {
             try {
                 const response = await fetch(url);
 
+                console.log(response);
+
                 if (response.ok) {
                     console.log('URL is accessible.');
                     return true;

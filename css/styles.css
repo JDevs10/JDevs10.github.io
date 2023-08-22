@@ -82,10 +82,10 @@ menu {
     padding: 2rem 1rem;
 }
 .main-menu-top span {
-    font-family: "Open Sans";
+    font-family: font-file-82132;
     color: #fff;
     margin-top: 1px;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 .logo {
     display: -webkit-box;
@@ -103,10 +103,10 @@ menu {
     align-items: center;
 }
 .logo span {
-    font-family: "Dancing Script";
+    font-family: font-file-82132;
     color: #fff;
     margin-top: 1px;
-    font-size: 2rem;
+    font-size: 2.3rem;
 }
 a {
     color: #00AAFF;
@@ -148,7 +148,8 @@ nav {
     text-align: center;
     width: 100%;
     display: block;
-    font-size: 1.6rem;
+    font-family: font-file-82132;
+    font-size: 1.8rem;
     color: #909096;
     line-height: 5rem;
     border-bottom: 1px solid #282828;
@@ -164,7 +165,7 @@ nav {
     text-decoration: none;
 }
 .main-menu__top > span {
-    font-family: 'Open Sans';
+    font-family: font-file-82132;
     color: #a5a5a5;
     font-size: 1.2rem;
     margin-top: 1rem;
@@ -236,7 +237,7 @@ li {
     color: #8d8d8d;
     margin-top: 9px;
     font-size: 13px;
-    font-family: "Open Sans", sans-serif;
+    font-family: font-file-82132;
     letter-spacing: 1px;
     margin-bottom: 30px;
     display: block;
@@ -314,7 +315,7 @@ li {
     margin-left: auto;
     margin-right: auto;
     color: #00AAFF;
-    font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+    font-family: font-file-82132;
 }
 .popup .close {
     position: absolute;
@@ -462,7 +463,7 @@ h1 .blast:hover, h2 .blast:hover, h3 .blast:hover {
     color: #00AAFF;
     font-size: 14px;
     letter-spacing: 4px;
-    font-family: "Open Sans",sans-serif;
+    font-family: font-file-82132;
     text-decoration: none;
     margin-top: 20px;
     position: relative;
@@ -791,18 +792,9 @@ h3 {
 }
 
 .contactBlock {
-    display: inline-block;
-    vertical-align: top;
     height: 100%;
     min-width: 30%;
     padding: 10px 0;
-}
-
-.contactBlock .title {
-    font-size: 40px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.01em;
 }
 
 .infoBlock {
@@ -810,30 +802,30 @@ h3 {
     color: #fff;
 }
 
-.contactBlock.infoBlock ul {
+.contactBlock .infoBlock ul {
     padding: 0px;
 }
 
-.contactBlock.infoBlock ul li {
+.contactBlock .infoBlock ul li {
     margin-top: 25px;
     list-style: none;
 }
 
-.contactBlock.infoBlock ul li::before {
+.contactBlock .infoBlock ul li::before {
     content: '';
     vertical-align: middle;
     display: inline-block;
     margin-right: 15px;
 }
 
-.contactBlock.infoBlock ul li.phone:before {
+.contactBlock .infoBlock ul li.phone:before {
     background: url("../img/icons/contact_call.svg");
     background-size: contain;
     width: 22px;
     height: 22px;
 }
 
-.contactBlock.infoBlock ul li.mail:before {
+.contactBlock .infoBlock ul li.mail:before {
     background: url("../img/icons/contact_mail.svg") no-repeat center;
     background-size: auto;
     background-size: contain;
@@ -841,7 +833,7 @@ h3 {
     height: 22px;
 }
 
-.contactBlock.infoBlock ul li.adr:before {
+.contactBlock .infoBlock ul li.adr:before {
     background: url("../img/icons/contact_location.svg") no-repeat center;
     background-size: auto;
     background-size: contain;
@@ -849,19 +841,13 @@ h3 {
     height: 22px;
 }
 
-.contactBlock.infoBlock ul li a {
+.contactBlock .infoBlock ul li a {
     font-size: 15px;
     color: #fff;
     vertical-align: middle;
     display: inline-block;
     width: calc(100% - 40px);
 }
-
-
-.pitchBlock {
-    /* background: #eaeaea; */
-}
-
 
 .contactBlock .infoWrap {
     margin: auto;
@@ -870,7 +856,7 @@ h3 {
     padding: 0 50px;
 }
 
-.contactBlock.pitchBlock .text {
+.contactBlock .pitchBlock .text {
     margin-top: 25px;
     font-size: 14px;
     line-height: 18px;
@@ -879,13 +865,13 @@ h3 {
     font-weight: 400;
 }
 
-.contactBlock.pitchBlock .text input {
+.contactBlock .pitchBlock .text input {
     position: absolute;
     left: -999999px;
     visibility: hidden;
 }
 
-.contactBlock.pitchBlock .text .cFormInput {
+.contactBlock .pitchBlock .text .cFormInput {
     display: inline-block;
     position: relative;
     max-width: 240px;
@@ -906,7 +892,7 @@ h3 {
     transition: all ease-in-out .3s;
 }
 
-.contactBlock.pitchBlock .text .cFormInput:after {
+.contactBlock .pitchBlock .text .cFormInput:after {
     position: absolute;
     left: 0;
     font-size: 14px;
@@ -915,27 +901,27 @@ h3 {
     transition: all ease .3s;
 }
 
-.contactBlock.pitchBlock .text .cFormInput[data-target="contactNameInpt"] {
-    min-width: 70px;
+.contactBlock .pitchBlock .text .cFormInput[data-target="contactNameInpt"] {
+    min-width: 75px;
 }
 
-.contactBlock.pitchBlock .text .cFormInput[data-target="contactNameInpt"]:after {
+.contactBlock .pitchBlock .text .cFormInput[data-target="contactNameInpt"]:after {
     content: 'your name';
 }
 
-.contactBlock.pitchBlock .text .cFormInput[data-target="contactMailInpt"] {
-    min-width: 70px;
+.contactBlock .pitchBlock .text .cFormInput[data-target="contactMailInpt"] {
+    min-width: 80px;
 }
 
-.contactBlock.pitchBlock .text .cFormInput[data-target="contactMailInpt"]:after {
+.contactBlock .pitchBlock .text .cFormInput[data-target="contactMailInpt"]:after {
     content: 'your e-mail';
 }
 
-.contactBlock.pitchBlock .text .cFormInput[data-target="contactProjectInpt"] {
-    min-width: 70px;
+.contactBlock .pitchBlock .text .cFormInput[data-target="contactProjectInpt"] {
+    min-width: 80px;
 }
 
-.contactBlock.pitchBlock .text .cFormInput[data-target="contactProjectInpt"]:after {
+.contactBlock .pitchBlock .text .cFormInput[data-target="contactProjectInpt"]:after {
     content: 'this project';
 }
 
@@ -944,7 +930,7 @@ h3 {
 }
 
 
-.contactBlock.pitchBlock .gradButton {
+.contactBlock .pitchBlock .gradButton {
     cursor: pointer;
     outline: none;
     display: block;
@@ -954,20 +940,56 @@ h3 {
     box-shadow: none;
     width: 100px;
     height: 35px;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 35px;
     text-align: center;
     font-weight: bold;
-    font-family: "Montserrat", sans-serif;
+    font-family: font-file-82132;
     color: #fff;
     background: linear-gradient(to right, #00AAFF 0%, #706FD3 100%);
 }
 
-.section-contact .text-zone {
-    /* width: 50%; */
-    padding-right: 5rem;
-    min-width: 400px;
-    flex: 1 0 0%;
+.social-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-contact > .icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-family: font-file-82132;
+    overflow: hidden;
+    transition: all .3s ease-out;
+}
+
+.social-contact > .icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.social-contact > .icon:hover {
+    width: 200px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.icon .git {
+    color: #fff;
+}
+
+.icon .codep {
+    color: #fff;
+}
+
+.icon > span {
+    color: #706FD3;
 }
 
 img {

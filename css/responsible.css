@@ -171,6 +171,11 @@ large devices (large laptops and desktops, 1200px and under) */
     .scroll-down {
         font-size: 10px;
     }
+
+    .social-contact{
+        margin-top: 20px;
+        flex-direction: column;
+    }
 }
 
 @media only screen and (max-width: 375px) {
@@ -263,4 +268,9 @@ large devices (large laptops and desktops, 1200px and under) */
     .scroll-down {
         font-size: 10px;
     }
+}
+
+/* responsive */
+@media only screen and (min-width: 320px) and (max-width: 991px) {
+    
 }
