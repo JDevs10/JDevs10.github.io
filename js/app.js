@@ -1,6 +1,7 @@
 import { Utils } from "./utils.js";
 const App = {
     myContainer:  document.getElementById('myContainer'),
+    jlFavicon: "img/favicon.ico",
     jlLogoImg: "img/JL-Logo.png",
     jLogoImg: "img/J-Logo.png",
     lLogoImg: "img/L-Logo.png",
@@ -89,7 +90,7 @@ const App = {
             link.rel = 'icon';
             document.getElementsByTagName('head')[0].appendChild(link);
         }
-        link.href = App.jlLogoImg;
+        link.href = App.jlFavicon;
     },
     initMenu: function () {
         const myMenu = document.getElementById("myMenu");
@@ -530,17 +531,13 @@ const App = {
 
 
                         if (!Utils.Function.empty(item.appLink)) {
-                            const isUrlAccessible = await Utils.Function.isUrlAccessible(item.appLink).valueOf();
-
-                            if (isUrlAccessible) {
-                                const appLink = document.createElement('a');
-                                appLink.href = item.appLink;
-                                appLink.innerHTML = App.IconManager.getLiveIcon();
-                                appLink.title = `Demo : ${item.title}`;
-                                appLink.className = 'appLink';
-                                appLink.target = '_blank';
-                                popupContent.appendChild(appLink);
-                            }
+                            const appLink = document.createElement('a');
+                            appLink.href = item.appLink;
+                            appLink.innerHTML = App.IconManager.getLiveIcon();
+                            appLink.title = `Demo : ${item.title}`;
+                            appLink.className = 'appLink';
+                            appLink.target = '_blank';
+                            popupContent.appendChild(appLink);
                         }
 
                         if (!Utils.Function.empty(item.wireframeNworkflow)) {
