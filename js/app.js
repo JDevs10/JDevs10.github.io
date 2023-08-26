@@ -495,72 +495,10 @@ const App = {
                     itemLink.href = `#item-${index}`;
                     itemLink.title = item.title;
                     itemLink.classList.add('colorbox');
-                    itemLink.addEventListener('click', async function() {
-                        const divPopUp1 = document.createElement('div'), divPopUp = document.createElement('div');
-                        
-                        divPopUp1.appendChild(divPopUp);
-                        document.body.appendChild(divPopUp1);
-                        document.body.classList.add('stop-scrolling');
+                    // itemLink.addEventListener('click', async () => App.initPortfolioItem(index, item));
+                    itemLink.addEventListener('click', async () => App.initPortfolioItemTest(index, item));
+                    // itemLink.addEventListener('click', async () => App.initPortfolioItemTest_2(index, item));
 
-                        divPopUp1.setAttribute('id', `item-${index}`);
-                        divPopUp1.classList.add('overlay');
-                        divPopUp.classList.add('popup');
-
-                        const popupTitle = document.createElement('h2'), 
-                        close = document.createElement('a'),
-                        popupContent = document.createElement('div');
-
-                        popupTitle.innerText = item.title;
-                        divPopUp.appendChild(popupTitle);
-                        
-                        close.classList.add('close');
-                        close.href = `#parentItem-${index}`;
-                        close.innerText = "X";
-                        close.addEventListener('click', function() {
-                            document.body.removeChild(divPopUp1);
-                            document.body.classList.remove('stop-scrolling');
-                        });
-                        divPopUp.appendChild(close);
-
-                        popupContent.classList.add('content');
-
-                        const p = document.createElement('p');
-                        p.innerHTML = item.description;
-                        p.style.fontSize = '20px';
-                        popupContent.appendChild(p);
-
-
-                        if (!Utils.Function.empty(item.appLink)) {
-                            const appLink = document.createElement('a');
-                            appLink.href = item.appLink;
-                            appLink.innerHTML = App.IconManager.getLiveIcon();
-                            appLink.title = `Demo : ${item.title}`;
-                            appLink.className = 'appLink';
-                            appLink.target = '_blank';
-                            popupContent.appendChild(appLink);
-                        }
-
-                        if (!Utils.Function.empty(item.wireframeNworkflow)) {
-                            const img = document.createElement('img');
-                            img.alt = "Wireframe and/or Workflow image";
-                            img.src = item.wireframeNworkflow;
-                            popupContent.appendChild(img);
-                        }
-
-                        popupContent.appendChild(document.createElement('br'));
-                        popupContent.appendChild(document.createElement('br'));
-
-                        if (!Utils.Function.empty(item.images)) {
-                            item.images.forEach(image => {
-                                const img = document.createElement('img');
-                                img.alt = "Image of the application";
-                                img.src = image;
-                                popupContent.appendChild(img);
-                            })
-                        }
-
-                        divPopUp.appendChild(popupContent);
-                    });
                     bgDiv.appendChild(itemLink);
 
                     li.appendChild(bgDiv);
@@ -569,6 +507,189 @@ const App = {
                 portfolioWall.appendChild(list);
             }
         });
+    },
+    initPortfolioItemTest: async function (index, item) {
+        if (Utils.Function.empty(item)) return;
+
+        // Create overlay and popup divs
+        const divPopUp1 = document.createElement('div');
+        const divPopUp = document.createElement('div');
+        divPopUp1.appendChild(divPopUp);
+        document.body.appendChild(divPopUp1);
+        document.body.classList.add('stop-scrolling');
+        divPopUp1.setAttribute('id', `item-${index}`);
+        divPopUp1.classList.add('overlay');
+        divPopUp.classList.add('popup');
+
+        // Create carousel elements
+        const carouselWrapElm = document.createElement('div');
+        const carouselWindowElm = document.createElement('div');
+        carouselWrapElm.style.width = '700px';
+        carouselWrapElm.classList.add('carouselWrap');
+        carouselWindowElm.classList.add('carouselWindow');
+
+        if (!Utils.Function.empty(item.carouselImgs)) {
+            const carouselElm = document.createElement('div');
+            const prev = document.createElement('i');
+            const next = document.createElement('i');
+            carouselElm.setAttribute('id', 'carousel');
+            carouselElm.style.left = '-700px';
+
+            item.carouselImgs.forEach((value) => {
+                const imgDiv = document.createElement('div');
+                imgDiv.classList.add('carouselSide');
+                imgDiv.style.width = '700px';
+                imgDiv.style.background = `url("${value}") center center / cover`;
+                carouselElm.appendChild(imgDiv);
+            });
+
+            carouselWindowElm.appendChild(carouselElm);
+
+            prev.classList.add('carouselPrev');
+            prev.innerHTML = await App.IconManager.getCarouselPrev();
+            prev.addEventListener('click', function(e) {
+                carouselElm.style.transform = 'translateX(700px)';
+                carouselElm.classList.add('carouselTransition');
+                setTimeout(function() {
+                    const firstSlide = carouselElm.querySelector('.carouselSide:first-child');
+                    const lastSlide = carouselElm.querySelector('.carouselSide:last-child');
+                    carouselElm.insertBefore(lastSlide, firstSlide);
+                    carouselElm.classList.remove('carouselTransition');
+                    carouselElm.style.transform = 'translateX(0)';
+                }, 700);
+            });
+
+            carouselWindowElm.appendChild(prev);
+
+            next.classList.add('carouselNext');
+            next.innerHTML = await App.IconManager.getCarouselNext();
+            next.addEventListener('click', function(e) {
+                carouselElm.style.transform = 'translateX(-700px)';
+                carouselElm.classList.add('carouselTransition');
+                setTimeout(function() {
+                    const firstSlide = carouselElm.querySelector('.carouselSide:first-child');
+                    carouselElm.appendChild(firstSlide);
+                    carouselElm.classList.remove('carouselTransition');
+                    carouselElm.style.transform = 'translateX(0)';
+                }, 700);
+            });
+
+            carouselWindowElm.appendChild(next);
+        }
+
+        carouselWrapElm.appendChild(carouselWindowElm);
+        divPopUp.appendChild(carouselWrapElm);
+
+        // Create popup info elements
+        const modalInfo = document.createElement('div');
+        modalInfo.classList.add('modalInfo');
+        modalInfo.style.width = '700px';
+
+        const titleElem = document.createElement('div');
+        titleElem.classList.add('title');
+        titleElem.innerHTML = item.title;
+        modalInfo.appendChild(titleElem);
+
+        const tagElem = document.createElement('div');
+        tagElem.classList.add('tag');
+        tagElem.innerHTML = item.tag ?? '';
+        modalInfo.appendChild(tagElem);
+
+        const detailElem = document.createElement('div');
+        detailElem.classList.add('detail');
+        detailElem.innerHTML = item.description;
+        modalInfo.appendChild(detailElem);
+
+        const resourceLinkElem = document.createElement('a');
+        resourceLinkElem.href = item.appLink;
+        resourceLinkElem.target = '_blank';
+        resourceLinkElem.style.textDecoration = 'none';
+        const divBtn = document.createElement('div');
+        divBtn.classList.add('popup-view-resource');
+        divBtn.innerHTML = await App.IconManager.getOpenInNewTab() + ' VIEW SITE';
+        resourceLinkElem.appendChild(divBtn);
+        modalInfo.appendChild(resourceLinkElem);
+
+        divPopUp.appendChild(modalInfo);
+
+        // Create close button
+        const closeBtnElem = document.createElement('i');
+        closeBtnElem.classList.add('close');
+        closeBtnElem.innerHTML = await App.IconManager.getCloseIcon();
+        closeBtnElem.addEventListener('click', function (e) {
+            document.body.removeChild(divPopUp1);
+            document.body.classList.remove('stop-scrolling');
+        });
+
+        divPopUp.appendChild(closeBtnElem);
+    },
+    initPortfolioItem: function (index, item) {
+        if (Utils.Function.empty(item)) return;
+
+        const divPopUp1 = document.createElement('div'), divPopUp = document.createElement('div');
+
+        divPopUp1.appendChild(divPopUp);
+        document.body.appendChild(divPopUp1);
+        document.body.classList.add('stop-scrolling');
+
+        divPopUp1.setAttribute('id', `item-${index}`);
+        divPopUp1.classList.add('overlay');
+        divPopUp.classList.add('popup');
+
+        const popupTitle = document.createElement('h2'),
+        close = document.createElement('a'),
+        popupContent = document.createElement('div');
+
+        popupTitle.innerText = item.title;
+        divPopUp.appendChild(popupTitle);
+
+        close.classList.add('close');
+        close.href = `#parentItem-${index}`;
+        close.innerText = "X";
+        close.addEventListener('click', function() {
+            document.body.removeChild(divPopUp1);
+            document.body.classList.remove('stop-scrolling');
+        });
+        divPopUp.appendChild(close);
+
+        popupContent.classList.add('content');
+
+        const p = document.createElement('p');
+        p.innerHTML = item.description;
+        p.style.fontSize = '16px';
+        popupContent.appendChild(p);
+
+
+        if (!Utils.Function.empty(item.appLink)) {
+            const appLink = document.createElement('a');
+            appLink.href = item.appLink;
+            appLink.innerHTML = App.IconManager.getLiveIcon();
+            appLink.title = `Demo : ${item.title}`;
+            appLink.className = 'appLink';
+            appLink.target = '_blank';
+            popupContent.appendChild(appLink);
+        }
+
+        if (!Utils.Function.empty(item.wireframeNworkflow)) {
+            const img = document.createElement('img');
+            img.alt = "Wireframe and/or Workflow image";
+            img.src = item.wireframeNworkflow;
+            popupContent.appendChild(img);
+        }
+
+        popupContent.appendChild(document.createElement('br'));
+        popupContent.appendChild(document.createElement('br'));
+
+        if (!Utils.Function.empty(item.images)) {
+            item.images.forEach(image => {
+                const img = document.createElement('img');
+                img.alt = "Image of the application";
+                img.src = image;
+                popupContent.appendChild(img);
+            })
+        }
+
+        divPopUp.appendChild(popupContent);
     },
     initWorkExperience: function () {
         const workWall = document.getElementById("work-wall");
@@ -741,6 +862,42 @@ const App = {
     IconManager: class {
         static getLiveIcon() {
             return "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"75px\" height=\"75px\" viewBox=\"0,0,256,256\"><g fill=\"#ff0000\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"><g transform=\"scale(0.5,0.5)\"><path d=\"M101.42969,171.56055c-34.15289,-0.00022 -64.94298,20.57284 -78.01283,52.12596c-13.06985,31.55312 -5.84556,67.8724 18.30419,92.02214c24.14974,24.14974 60.46902,31.37403 92.02214,18.30419c31.55312,-13.06985 52.12618,-43.85994 52.12596,-78.01283c-0.04991,-46.61393 -37.82552,-84.38954 -84.43945,-84.43945zM148.07031,171.56055c30.72511,16.9905 49.79632,49.32948 49.79632,84.43945c0,35.10997 -19.07121,67.44895 -49.79632,84.43945h316.92969c16.56854,0 30,-13.43146 30,-30v-108.8789c0,-16.56854 -13.43146,-30 -30,-30zM323.74414,200c2.56565,-0.04965 4.87896,1.53756 5.75586,3.94922l32.5,89.16992l32.44922,-89.11914c1.13208,-3.11523 4.5752,-4.7229 7.69043,-3.59082c3.11523,1.13208 4.7229,4.5752 3.59082,7.69043l-0.04102,-0.04883l-35.82031,98.41016c-1.20843,3.33032 -4.37225,5.54797 -7.91504,5.54797c-3.54279,0 -6.70661,-2.21765 -7.91504,-5.54797l-35.81836,-98.41016c-0.66202,-1.82046 -0.40458,-3.84854 0.6913,-5.44585c1.09588,-1.59731 2.8954,-2.56741 4.83214,-2.60493zM429.55078,200h43.92969c3.31371,0 6,2.68629 6,6c0,3.31371 -2.68629,6 -6,6h-41.17969v38h41.17969c3.31371,0 6,2.68629 6,6c0,3.31371 -2.68629,6 -6,6h-41.17969v38h41.17969c3.31371,0 6,2.68629 6,6c0,3.31371 -2.68629,6 -6,6h-43.92969c-5.11016,-0.00552 -9.24988,-4.14961 -9.25,-9.25977v-93.48046c0.00012,-5.11016 4.13984,-9.25425 9.25,-9.25977zM215.56445,200.00195c3.24487,0.09405 5.82648,2.75181 5.82617,5.99805v92.44922c-0.00287,0.41014 0.15798,0.80448 0.4469,1.09559c0.28892,0.29111 0.68202,0.45495 1.09217,0.45519h30.46093c3.31371,0 6,2.68629 6,6c0,3.31371 -2.68629,6 -6,6h-30.46093c-7.47721,-0.01154 -13.53399,-6.07356 -13.53907,-13.55078v-92.44922c-0.00015,-1.62154 0.65602,-3.1741 1.81907,-4.30403c1.16304,-1.12993 2.7339,-1.741 4.35476,-1.69402zM293.56445,200.00195c3.24487,0.09405 5.82648,2.75181 5.82617,5.99805v100c0,3.31371 -2.68629,6 -6,6c-3.31371,0 -6,-2.68629 -6,-6v-100c-0.00015,-1.62154 0.65602,-3.1741 1.81907,-4.30403c1.16304,-1.12993 2.7339,-1.741 4.35476,-1.69402zM78.57227,213.60547c2.637,0.07494 5.21384,0.80524 7.49805,2.125l45.92969,26.5c4.91921,2.84033 7.94953,8.0892 7.94953,13.76953c0,5.68033 -3.03032,10.9292 -7.94953,13.76953l-45.91016,26.5c-4.91917,2.85173 -10.9872,2.85765 -15.91193,0.01553c-4.92473,-2.84212 -7.95549,-8.09906 -7.94744,-13.78506v-53c-0.00296,-4.29454 1.7325,-8.4074 4.81103,-11.40168c3.07853,-2.99427 7.23797,-4.61496 11.53077,-4.49285z\"></path></g></g></svg>";
+        }
+        static getCarouselPrev() {
+            return new Promise((resolve) => {
+                Utils.Function.ajax("img/icons/carouselPrev.svg", function ({response, httpCode}) {
+                    if (httpCode == 200) {
+                        resolve(response);
+                    }
+                });
+            });
+        }
+        static getCarouselNext() {
+            return new Promise((resolve) => {
+                Utils.Function.ajax("img/icons/carouselNext.svg", function ({response, httpCode}) {
+                    if (httpCode == 200) {
+                        resolve(response);
+                    }
+                });
+            });
+        }
+        static getCloseIcon() {
+            return new Promise((resolve) => {
+                Utils.Function.ajax("img/icons/x.svg", function ({response, httpCode}) {
+                    if (httpCode == 200) {
+                        resolve(response);
+                    }
+                });
+            });
+        }
+        static getOpenInNewTab() {
+            return new Promise((resolve) => {
+                Utils.Function.ajax("img/icons/open-in-new-tab.svg", function ({response, httpCode}) {
+                    if (httpCode == 200) {
+                        resolve(response);
+                    }
+                });
+            });
         }
     }
 };

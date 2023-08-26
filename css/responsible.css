@@ -114,6 +114,9 @@ large devices (large laptops and desktops, 1200px and under) */
     .contact-map > iframe {
         height: 500px;
     }
+    .popup {
+        width: 100%;
+    }
 }
 
 /* Extra small devices (phones, 425px and down) */

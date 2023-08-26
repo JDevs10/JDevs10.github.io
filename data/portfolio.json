@@ -15,10 +15,15 @@
     },
     {
         "title": "Pacman",
+        "tag": "web gaming",
         "appLink": "https://jdevs10.github.io/Pacman-Web-Game",
         "thumbnail": "img/Classified-Stamp.png",
-        "wireframeNworkflow": "https://jacekjeznach.com/wp-content/uploads/2017/10/Influencer-Marketing-Agency-Social-Influencing-London-e1574675715647-scaled.jpg",
-        "description": "Creating a fun Pacman game on the web :)"
+        "description": "Creating a fun Pacman game on the web :)",
+        "carouselImgs": [
+            "img/Classified-Stamp.png",
+            "img/missing-wireframe.jpg",
+            "img/Classified-Stamp.png"
+        ]
     },
     {
         "title": "iStock",
