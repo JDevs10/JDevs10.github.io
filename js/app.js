@@ -619,6 +619,8 @@ const App = {
         closeBtnElem.addEventListener('click', function (e) {
             document.body.removeChild(divPopUp1);
             document.body.classList.remove('stop-scrolling');
+            document.location.href = `#portfolio-wall`;
+            history.replaceState({}, document.title, window.location.pathname + window.location.search);
         });
 
         divPopUp.appendChild(closeBtnElem);
