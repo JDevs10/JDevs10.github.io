@@ -257,11 +257,11 @@ const App = {
                 }
             });
             window.addEventListener('resize', function(e) {
+                App.welcomeCanvas.resetSize()
                 if (App.MOBILE) {
                     cancelAnimationFrame(App.welcomeCanvas.animationId)
                     App.welcomeCanvas.animationId = null
                 } else {
-                    App.welcomeCanvas.resetSize()
                     App.welcomeCanvas.resetDots()
                     if (Utils.Function.empty(App.welcomeCanvas.animationId)) {
                         App.welcomeCanvas.animationLoop()
