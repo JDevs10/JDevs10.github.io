@@ -88,23 +88,25 @@ export const Utils = {
 
             return lResult;
         },
+        /**
+         * @description Function to check if a URL of the current website origin is reachable
+         * @param {String} url 
+         * @returns Promise<Boolean>
+         */
         isUrlAccessible: async function (url) {
             if (this.empty(url)) {
                 return false;
             }
 
             try {
-                const response = await fetch(url);
-
+                const response = await fetch(url, {
+                    method: 'HEAD', // Use the HEAD method to check if the URL exists
+                });
                 if (response.ok) {
-                    console.log('URL is accessible.');
                     return true;
-                } else {
-                    console.log('URL is not accessible. Status:', response.status);
-                    return false;
                 }
+                return false;
             } catch (error) {
-                console.error('Error occurred while checking URL accessibility:', error);
                 return false;
             }
         }
