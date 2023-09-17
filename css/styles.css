@@ -723,6 +723,20 @@ canvas {
     left: 0;
     top: 0;
 }
+#welcomeCanvasStopMotion {
+    color: #00AAFF;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -webkit-box-direction: normal;
+}
+#welcomeCanvasStopMotion > svg {
+    height: 50px;
+    font-size: 20px;
+}
 .scroll-down {
     position: absolute;
     right: 10px;
