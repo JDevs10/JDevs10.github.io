@@ -543,9 +543,10 @@ const App = {
         divPopUp.classList.add('popup');
 
         // Create carousel elements
+        const currentPopupWidth = window.innerWidth > 700 ? 700 : window.innerWidth;
         const carouselWrapElm = document.createElement('div');
         const carouselWindowElm = document.createElement('div');
-        carouselWrapElm.style.width = '700px';
+        carouselWrapElm.style.width = `${currentPopupWidth}px`;
         carouselWrapElm.classList.add('carouselWrap');
         carouselWindowElm.classList.add('carouselWindow');
 
@@ -554,12 +555,14 @@ const App = {
             const prev = document.createElement('i');
             const next = document.createElement('i');
             carouselElm.setAttribute('id', 'carousel');
-            carouselElm.style.left = '-700px';
+            carouselElm.style.left = `-${currentPopupWidth}px`;
 
             item.carouselImgs.forEach((value) => {
                 const imgDiv = document.createElement('div');
-                imgDiv.classList.add('carouselSide');
-                imgDiv.style.width = '700px';
+                imgDiv.classList.add('carouselSlide');
+                imgDiv.style.height = '300px';
+                imgDiv.style.width = `${currentPopupWidth}px`;
+                // imgDiv.style.background = `url("${value}") center center / cover`;
                 imgDiv.style.background = `url("${value}") center center / cover`;
                 carouselElm.appendChild(imgDiv);
             });
@@ -569,11 +572,11 @@ const App = {
             prev.classList.add('carouselPrev');
             prev.innerHTML = await App.IconManager.getCarouselPrev();
             prev.addEventListener('click', function(e) {
-                carouselElm.style.transform = 'translateX(700px)';
+                carouselElm.style.transform = `translateX(${currentPopupWidth}px)`;
                 carouselElm.classList.add('carouselTransition');
                 setTimeout(function() {
-                    const firstSlide = carouselElm.querySelector('.carouselSide:first-child');
-                    const lastSlide = carouselElm.querySelector('.carouselSide:last-child');
+                    const firstSlide = carouselElm.querySelector('.carouselSlide:first-child');
+                    const lastSlide = carouselElm.querySelector('.carouselSlide:last-child');
                     carouselElm.insertBefore(lastSlide, firstSlide);
                     carouselElm.classList.remove('carouselTransition');
                     carouselElm.style.transform = 'translateX(0)';
@@ -585,10 +588,10 @@ const App = {
             next.classList.add('carouselNext');
             next.innerHTML = await App.IconManager.getCarouselNext();
             next.addEventListener('click', function(e) {
-                carouselElm.style.transform = 'translateX(-700px)';
+                carouselElm.style.transform = `translateX(-${currentPopupWidth}px)`;
                 carouselElm.classList.add('carouselTransition');
                 setTimeout(function() {
-                    const firstSlide = carouselElm.querySelector('.carouselSide:first-child');
+                    const firstSlide = carouselElm.querySelector('.carouselSlide:first-child');
                     carouselElm.appendChild(firstSlide);
                     carouselElm.classList.remove('carouselTransition');
                     carouselElm.style.transform = 'translateX(0)';
@@ -604,7 +607,7 @@ const App = {
         // Create popup info elements
         const modalInfo = document.createElement('div');
         modalInfo.classList.add('modalInfo');
-        modalInfo.style.width = '700px';
+        modalInfo.style.width = `${currentPopupWidth}px`;
 
         const titleElem = document.createElement('div');
         titleElem.classList.add('title');
@@ -621,6 +624,8 @@ const App = {
         detailElem.innerHTML = item.description;
         modalInfo.appendChild(detailElem);
 
+        divPopUp.appendChild(modalInfo);
+
         const resourceLinkElem = document.createElement('a');
         resourceLinkElem.href = item.appLink;
         resourceLinkElem.target = '_blank';
@@ -629,22 +634,31 @@ const App = {
         divBtn.classList.add('popup-view-resource');
         divBtn.innerHTML = await App.IconManager.getOpenInNewTab() + ' VIEW SITE';
         resourceLinkElem.appendChild(divBtn);
-        modalInfo.appendChild(resourceLinkElem);
-
-        divPopUp.appendChild(modalInfo);
+        divPopUp.appendChild(resourceLinkElem);
 
         // Create close button
         const closeBtnElem = document.createElement('i');
         closeBtnElem.classList.add('close');
         closeBtnElem.innerHTML = await App.IconManager.getCloseIcon();
         closeBtnElem.addEventListener('click', function (e) {
-            document.body.removeChild(divPopUp1);
-            document.body.classList.remove('stop-scrolling');
-            document.location.href = `#portfolio-wall`;
-            history.replaceState({}, document.title, window.location.pathname + window.location.search);
+            App.closePortfolioItem(divPopUp1);
         });
 
         divPopUp.appendChild(closeBtnElem);
+    },
+    /**
+     * Remove a 'div' element that has an id of 'item-*'
+     * @param {HTMLElement} element 
+     */
+    closePortfolioItem: function (element = null) {
+        if (Utils.Function.empty(element)) {
+            element = document.querySelectorAll('[id^="item-"]')[0];
+            if (Utils.Function.empty(element)) {return;}
+        }
+        document.body.removeChild(element);
+        document.body.classList.remove('stop-scrolling');
+        document.location.href = `#portfolio-wall`;
+        history.replaceState({}, document.title, window.location.pathname + window.location.search);
     },
     initPortfolioItem: function (index, item) {
         if (Utils.Function.empty(item)) return;
@@ -877,10 +891,15 @@ const App = {
     },
     initResponsive: function () {
         window.addEventListener('resize', function(e) {
+            
             if (e.currentTarget.innerWidth < 1200) {
                 App.MOBILE = true;
             } else {App.MOBILE = false;}
-		});
+
+            if (e.currentTarget.innerWidth < 700) {
+                App.closePortfolioItem();
+            }
+        });
     },
     IconManager: class {
         static getLiveIcon() {
