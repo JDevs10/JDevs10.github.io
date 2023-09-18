@@ -514,9 +514,7 @@ const App = {
                     itemLink.href = `#item-${index}`;
                     itemLink.title = item.title;
                     itemLink.classList.add('colorbox');
-                    // itemLink.addEventListener('click', async () => App.initPortfolioItem(index, item));
-                    itemLink.addEventListener('click', async () => App.initPortfolioItemTest(index, item));
-                    // itemLink.addEventListener('click', async () => App.initPortfolioItemTest_2(index, item));
+                    itemLink.addEventListener('click', async () => App.initPortfolioItem(index, item));
 
                     bgDiv.appendChild(itemLink);
 
@@ -527,7 +525,7 @@ const App = {
             }
         });
     },
-    initPortfolioItemTest: async function (index, item) {
+    initPortfolioItem: async function (index, item) {
         if (Utils.Function.empty(item)) return;
 
         // Create overlay and popup divs
@@ -657,74 +655,6 @@ const App = {
         document.body.classList.remove('stop-scrolling');
         document.location.href = `#portfolio-wall`;
         history.replaceState({}, document.title, window.location.pathname + window.location.search);
-    },
-    initPortfolioItem: function (index, item) {
-        if (Utils.Function.empty(item)) return;
-
-        const divPopUp1 = document.createElement('div'), divPopUp = document.createElement('div');
-
-        divPopUp1.appendChild(divPopUp);
-        document.body.appendChild(divPopUp1);
-        document.body.classList.add('stop-scrolling');
-
-        divPopUp1.setAttribute('id', `item-${index}`);
-        divPopUp1.classList.add('overlay');
-        divPopUp.classList.add('popup');
-
-        const popupTitle = document.createElement('h2'),
-        close = document.createElement('a'),
-        popupContent = document.createElement('div');
-
-        popupTitle.innerText = item.title;
-        divPopUp.appendChild(popupTitle);
-
-        close.classList.add('close');
-        close.href = `#parentItem-${index}`;
-        close.innerText = "X";
-        close.addEventListener('click', function() {
-            document.body.removeChild(divPopUp1);
-            document.body.classList.remove('stop-scrolling');
-        });
-        divPopUp.appendChild(close);
-
-        popupContent.classList.add('content');
-
-        const p = document.createElement('p');
-        p.innerHTML = item.description;
-        p.style.fontSize = '16px';
-        popupContent.appendChild(p);
-
-
-        if (!Utils.Function.empty(item.appLink)) {
-            const appLink = document.createElement('a');
-            appLink.href = item.appLink;
-            appLink.innerHTML = App.IconManager.getLiveIcon();
-            appLink.title = `Demo : ${item.title}`;
-            appLink.className = 'appLink';
-            appLink.target = '_blank';
-            popupContent.appendChild(appLink);
-        }
-
-        if (!Utils.Function.empty(item.wireframeNworkflow)) {
-            const img = document.createElement('img');
-            img.alt = "Wireframe and/or Workflow image";
-            img.src = item.wireframeNworkflow;
-            popupContent.appendChild(img);
-        }
-
-        popupContent.appendChild(document.createElement('br'));
-        popupContent.appendChild(document.createElement('br'));
-
-        if (!Utils.Function.empty(item.images)) {
-            item.images.forEach(image => {
-                const img = document.createElement('img');
-                img.alt = "Image of the application";
-                img.src = image;
-                popupContent.appendChild(img);
-            })
-        }
-
-        divPopUp.appendChild(popupContent);
     },
     initWorkExperience: function () {
         const workWall = document.getElementById("work-wall");
