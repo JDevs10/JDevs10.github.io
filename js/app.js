@@ -266,13 +266,11 @@ const App = {
                 if (App.MOBILE) {
                     cancelAnimationFrame(App.welcomeCanvas.animationId)
                     App.welcomeCanvas.animationId = null
-                    welcomeCanvasStopMotion.style.opacity = '0'
                 } else {
                     App.welcomeCanvas.resetDots()
                     if (Utils.Function.empty(App.welcomeCanvas.animationId)) {
                         App.welcomeCanvas.isRunning = true;
                         App.welcomeCanvas.animationLoop()
-                        welcomeCanvasStopMotion.style.opacity = '1'
                         welcomeCanvasStopMotion.innerHTML = await App.IconManager.getPlayCircleOutline();
                     }
                 }
