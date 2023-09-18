@@ -638,7 +638,7 @@ const App = {
         closeBtnElem.classList.add('close');
         closeBtnElem.innerHTML = await App.IconManager.getCloseIcon();
         closeBtnElem.addEventListener('click', function (e) {
-            App.closePortfolioItem(divPopUp1);
+            App.closePortfolioItem(divPopUp1, index);
         });
 
         divPopUp.appendChild(closeBtnElem);
@@ -646,15 +646,22 @@ const App = {
     /**
      * Remove a 'div' element that has an id of 'item-*'
      * @param {HTMLElement} element 
+     * @param {number} index 
      */
-    closePortfolioItem: function (element = null) {
+    closePortfolioItem: function (element = null, index = null) {
         if (Utils.Function.empty(element)) {
             element = document.querySelectorAll('[id^="item-"]')[0];
             if (Utils.Function.empty(element)) {return;}
         }
         document.body.removeChild(element);
         document.body.classList.remove('stop-scrolling');
-        document.location.href = `#portfolio-wall`;
+
+        let newHash = "#portfolio-wall";
+        if (window.innerWidth <= 768 && !Utils.Function.empty(index)) {
+            newHash = `#parentItem-${index}`;
+        }
+        document.location.href = newHash;
+
         history.replaceState({}, document.title, window.location.pathname + window.location.search);
     },
     initWorkExperience: function () {

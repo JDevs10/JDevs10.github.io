@@ -181,11 +181,17 @@ large devices (large laptops and desktops, 1200px and under) */
         margin-top: 20px;
         flex-direction: column;
     }
+    #section-about > * > .text-zone,
+    .page-skills > .text-zone,
     #contact-info {
         margin-top: 100px;
     }
+    #section-about > * > .skills-charts,
     #contact-map {
         margin-bottom: 100px;
+    }
+    #work-wall {
+        padding-bottom: 100px;
     }
 }
 
