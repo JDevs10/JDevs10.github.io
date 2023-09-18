@@ -91,9 +91,6 @@ large devices (large laptops and desktops, 1200px and under) */
     .work-box {
         max-width: 350px;
     }
-    .contact-map > iframe {
-        height: 500px;
-    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -114,9 +111,6 @@ large devices (large laptops and desktops, 1200px and under) */
     .fake-magicwall ul li {
         width: 50%;
     }
-    .contact-map > iframe {
-        height: 500px;
-    }
     .popup {
         width: 100%;
     }
@@ -136,9 +130,6 @@ large devices (large laptops and desktops, 1200px and under) */
     }
     .fake-magicwall ul li {
         width: 100%;
-    }
-    .section-contact .contact-map {
-        height: 300px;
     }
 
     h1 {
@@ -189,6 +180,12 @@ large devices (large laptops and desktops, 1200px and under) */
     .social-contact{
         margin-top: 20px;
         flex-direction: column;
+    }
+    #contact-info {
+        margin-top: 100px;
+    }
+    #contact-map {
+        margin-bottom: 100px;
     }
 }
 
