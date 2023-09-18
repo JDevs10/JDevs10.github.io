@@ -113,6 +113,7 @@ const App = {
             menuMobileBtn.appendChild(svg);
 
             menuMobileBtn.addEventListener('click', function (e) {
+                document.body.classList.add('stop-scrolling');
                 menuMobileBtn.classList.add('mbtn-cl');
                 const _myMenu = document.getElementById("myMenu");
                 _myMenu.style.display = 'flex';
