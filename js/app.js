@@ -238,14 +238,15 @@ const App = {
         animationId: null,
         isRunning: false,
         init: async function () {
-            const welcomeCanvasStopMotion = document.getElementById('welcomeCanvasStopMotion');
-            welcomeCanvasStopMotion.innerHTML = await App.IconManager.getPlayCircleOutline();
-            welcomeCanvasStopMotion.addEventListener('click', App.welcomeCanvas.playPauseEvent);
-
             App.welcomeCanvas.canvas = document.getElementById('welcomeCanvas')
             if (Utils.Function.empty(App.welcomeCanvas.canvas)) {
                 return;
             }
+
+            const welcomeCanvasStopMotion = document.getElementById('welcomeCanvasStopMotion');
+            welcomeCanvasStopMotion.innerHTML = await App.IconManager.getPlayCircleOutline();
+            welcomeCanvasStopMotion.addEventListener('click', App.welcomeCanvas.playPauseEvent);
+
             App.welcomeCanvas.ctx = App.welcomeCanvas.canvas.getContext('2d')
             App.welcomeCanvas.resetSize()
             App.welcomeCanvas.resetDots()
