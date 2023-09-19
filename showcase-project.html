@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bg-styles.css">
+    <link rel="stylesheet" href="css/responsible.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <title>Portfolio JL</title>
+    <style>
+        body { background-color: #181818; }
+        #showcase-project {
+            height: 100vh;
+        }
+        #myProjectToShowcase {
+            position: relative;
+            min-height: 60vh;
+            min-width: 400px;
+            margin: 0 auto;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center
+        }
+    </style>
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/app.js"></script>
+</head>
+<body>
+
+    <menu id="myMenu" class="main-menu"></menu>
+
+    <div id="myContainer">
+        <div class="page-outer">
+            <span class="tags top-tags"> &lt;html&gt; <br> </span>
+            <div class="page-inner">
+                <section id="showcase-project" class="section-full js-way">
+                    <div class="row" style="height: 100%;">
+                        <div class="text-zone">
+                            <header>
+                                <h2 id="showcase-project-title" aria-label="xxxxx" class="blast-root"></h2>
+                            </header>
+                            <br>
+                            <p id="showcase-projet-description"></p>
+                            <p>A Full-Stack Developer located in Paris. I have a serious interest in making/maintaining applications. <br>
+                            Ever since i've discover <a href="https://www.qt.io/product/development-tools" target="_blank" rel="Qt Creator - IDE">Qt Creator</a> in the years of after high school, my passion for Apps in general began (Desktop, Mobile or Web) <br>
+                            Create interesting and useful apps for daily use by users.</p>
+                            <p>Well-organized person, problem solver, independent employee who can work in a team in agile mode. <br>
+                            Outside of coding, I play games like World of Tanks, enjoy outdoor activities sush as runing and watch crime TV shows.
+                             </p>
+
+                            <p>More about my experience and work you'll find in <a rel="skills" href="skills.html">Skills</a> and <a rel="about" href="portfolio.html">Portfolio</a>.</p> 
+                        </div>
+                        <!-- <div class="skills-charts" style="min-height: 60vh;"> -->
+                            <div id="myProjectToShowcase">
+                                <!-- <canvas id="myTechCanvas" width="500" height="500"></canvas> -->
+                                <iframe style="height: 100%; margin: auto;" src="https://appetize.io/embed/74r5yfd4uuvbzhoi4bfzcgkiga" sandbox="allow-same-origin allow-scripts" frameborder="0" id="project" allowfullscreen></iframe>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                </section>
+            </div>
+            <span class="tags bottom-tags"> <br> &lt;/html&gt; </span>
+        </div>
+    </div>
+
+</body>
+</html>
