@@ -64,7 +64,8 @@ const App = {
             svgPathD: "M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"
         }
     ],
-    init: function () {
+    init: async function () {
+        await this.TranslateService.init('en');
         this.initIcon();
         this.initMenu();
         this.welcomeCanvas.init();
@@ -76,6 +77,8 @@ const App = {
         this.initContactInfo();
         this.initShowcaseProject();
         this.initResponsive();
+
+        console.log(this.TranslateService.instant("greeting", {string: 'JDevs10'}));
 
         document.addEventListener('error', (event) => {
             window.location.href = "./404.html";
@@ -1000,6 +1003,49 @@ const App = {
                     }
                 });
             });
+        }
+    },
+    TranslateService: {
+        availableLanguage: ['en', 'fr'],
+        currentLanguage: 'en', // Default language
+        lang: {},
+        /**
+         * Fetch and load selected lang json
+         * @param {string} language
+         */
+        init: async function(language) {
+            App.TranslateService.currentLanguage = language;
+            App.TranslateService.lang = await new Promise(async (resolve) => {
+                await Utils.Function.ajax(`lang/lang-${App.TranslateService.currentLanguage}.json`, function ({response, httpCode}) {
+                    if (httpCode == 200) {
+                        resolve(JSON.parse(response));
+                    }
+                    resolve(JSON.parse('{}'));
+                });
+            });
+        },
+        /**
+         * Translate with params if needed
+         * @param {string | Array<string>} key 
+         * @param {Object} interpolateParams 
+         * @returns {string | any}
+         */
+        instant(key, interpolateParams = {}) {
+            const translation = App.TranslateService.lang[key];
+            if (!Utils.Function.empty(translation)) {
+                // Perform interpolation if there are interpolateParams
+                if (
+                    !Utils.Function.empty(interpolateParams) && 
+                    typeof interpolateParams === "object"
+                ) {
+                    return Object.keys(interpolateParams).reduce((result, paramKey) => result.replace(`{{${paramKey}}}`, interpolateParams[paramKey]), translation);
+                } else {
+                    return translation;
+                }
+            } else {
+                console.warn(`Translation for key '${key}' not found in '${App.TranslateService.currentLanguage}' language.`);
+                return key; // Return the key itself as a fallback
+            }
         }
     }
 };
