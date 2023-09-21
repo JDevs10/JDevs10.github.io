@@ -1,7 +1,8 @@
 [
     {
         "title": "Maarch Courrier",
-        "tag": "Web Application - Open Source",
+        "label": "Web Application",
+        "tags" : ["Company Project", "Open Source"],
         "isWeb": true,
         "appLink": "https://preview.maarchcourrier.com",
         "thumbnail": "img/MaarchCourrier/logo_only.svg",
@@ -14,7 +15,8 @@
     },
     {
         "title": "Maarch Parapheur",
-        "tag": "Web Application - Open Source",
+        "label": "Web Application",
+        "tags" : ["Company Project", "Open Source"],
         "isWeb": true,
         "appLink": "https://preview.maarchparapheur.com",
         "thumbnail": "img/MaarchParapheur/favicon.png",
@@ -27,7 +29,8 @@
     },
     {
         "title": "Pacman",
-        "tag": "Web Gaming - Personal",
+        "label": "Web Gaming",
+        "tags" : ["Personal Project"],
         "isWeb": true,
         "appLink": "https://jdevs10.github.io/Pacman-Web-Game",
         "thumbnail": "img/Classified-Stamp.png",
@@ -40,7 +43,8 @@
     },
     {
         "title": "iSales Pro",
-        "tag": "Mobile App - Professional",
+        "label": "Mobile App - Professional",
+        "tags" : ["Company Project"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iSales_Pro___",
         "thumbnail": "img/isalesPro/isalesPro-presentation-store.png",
@@ -59,7 +63,8 @@
     },
     {
         "title": "iStock",
-        "tag": "Mobile App - Professional",
+        "label": "Mobile App - Professional",
+        "tags" : ["Company Project"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iStock",
         "thumbnail": "img/istock/istock-presentation-store.png",
@@ -77,7 +82,8 @@
     },
     {
         "title": "iInventaire",
-        "tag": "Mobile App - Professional",
+        "label": "Mobile App - Professional",
+        "tags" : ["Company Project"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iinventaire",
         "thumbnail": "img/iinventaire/iInventaire-presentation-store.png",
@@ -97,7 +103,8 @@
     },
     {
         "title": "iNetty Mobile",
-        "tag": "Mobile App - Professional",
+        "label": "Mobile App - Professional",
+        "tags" : ["Company Project"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.anexys.inetty",
         "thumbnail": "img/inetty/inetty-presentation-store.png",
@@ -116,7 +123,8 @@
     },
     {
         "title": "Project T.A.",
-        "tag": "Mobile App - Personal",
+        "label": "Mobile App - Personal",
+        "tags" : ["Personal Project", "In Development"],
         "isMobile": true,
         "apkDemoLink": "",
         "appLink": "",

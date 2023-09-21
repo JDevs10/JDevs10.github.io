@@ -619,9 +619,25 @@ const App = {
         modalInfo.appendChild(titleElem);
 
         const tagElem = document.createElement('div');
-        tagElem.classList.add('tag');
-        tagElem.innerHTML = item.tag ?? '';
+        tagElem.classList.add('label');
+        tagElem.innerHTML = item.label ?? '';
         modalInfo.appendChild(tagElem);
+
+        const tagsDivElem = document.createElement('div');
+        tagsDivElem.classList.add('row');
+        tagsDivElem.style.width = '100%';
+        tagsDivElem.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
+        tagsDivElem.style.paddingBottom = '15px';
+
+        if (!Utils.Function.empty(item.tags) && Array.isArray(item.tags)) {
+            item.tags.forEach(tag => {
+                const tagElem = document.createElement('div');
+                tagElem.classList.add('projectTag');
+                tagElem.innerHTML = tag;
+                tagsDivElem.appendChild(tagElem);
+            });
+        }
+        modalInfo.appendChild(tagsDivElem);
 
         const detailElem = document.createElement('div');
         detailElem.classList.add('detail');
@@ -738,6 +754,7 @@ const App = {
         }
 
         const title = document.getElementById('showcase-project-title'),
+        projectTags = document.getElementById('projectTags'),
         description = document.getElementById('showcase-projet-description'),
         showcase = document.getElementById('myProjectToShowcase');
 
@@ -760,6 +777,17 @@ const App = {
             if (char === ',' || char === '&') {
                 title.appendChild(document.createElement('br'));
             }
+        }
+
+        if (!Utils.Function.empty(myProject.tags) && Array.isArray(myProject.tags)) {
+            projectTags.classList.add('row');
+            projectTags.style.width = '100%';
+            myProject.tags.forEach(tag => {
+                const tagElem = document.createElement('div');
+                tagElem.classList.add('projectTag');
+                tagElem.innerHTML = tag;
+                projectTags.appendChild(tagElem);
+            });
         }
 
         description.innerHTML = myProject.description;
