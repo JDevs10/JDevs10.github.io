@@ -114,6 +114,12 @@ large devices (large laptops and desktops, 1200px and under) */
     .popup {
         width: 100%;
     }
+    #showcase-project > * > .text-zone {
+        margin-top: 50px;
+    }
+    #showcase-project {
+        height: 130vh !important;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -182,6 +188,7 @@ large devices (large laptops and desktops, 1200px and under) */
         flex-direction: column;
     }
     #section-about > * > .text-zone,
+    #showcase-project > * > .text-zone,
     .page-skills > .text-zone,
     #contact-info {
         margin-top: 100px;
