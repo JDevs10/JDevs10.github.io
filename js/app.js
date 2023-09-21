@@ -74,6 +74,7 @@ const App = {
         this.initPortfolioWall();
         this.initWorkExperience();
         this.initContactInfo();
+        this.initShowcaseProject();
         this.initResponsive();
 
         document.addEventListener('error', (event) => {
@@ -558,10 +559,15 @@ const App = {
             item.carouselImgs.forEach((value) => {
                 const imgDiv = document.createElement('div');
                 imgDiv.classList.add('carouselSlide');
-                imgDiv.style.height = '300px';
+                imgDiv.style.height = '400px';
                 imgDiv.style.width = `${currentPopupWidth}px`;
-                // imgDiv.style.background = `url("${value}") center center / cover`;
-                imgDiv.style.background = `url("${value}") center center / cover`;
+                imgDiv.style.backgroundImage = `url("${value}")`;
+                imgDiv.style.backgroundSize = 'contain';
+                imgDiv.style.backgroundRepeat = 'no-repeat';
+                imgDiv.style.backgroundPosition = 'center';
+                imgDiv.addEventListener('click', function (e) {
+                    window.open(value, 'child');
+                })
                 carouselElm.appendChild(imgDiv);
             });
 
@@ -625,12 +631,23 @@ const App = {
         divPopUp.appendChild(modalInfo);
 
         const resourceLinkElem = document.createElement('a');
-        resourceLinkElem.href = item.appLink;
-        resourceLinkElem.target = '_blank';
         resourceLinkElem.style.textDecoration = 'none';
+        resourceLinkElem.style.cursor = 'pointer';
+        if (!Utils.Function.empty(item.isMobile) && !Utils.Function.empty(item.apkDemoLink)) {
+            resourceLinkElem.addEventListener('click', function() {
+                App.closePortfolioItem(divPopUp1, index);
+                App.loader.loadPage(`/showcase-project.html#${item.title}`, 10);
+            });
+        } else {
+            resourceLinkElem.href = item.appLink;
+            resourceLinkElem.target = '_blank';
+        }
+
         const divBtn = document.createElement('div');
         divBtn.classList.add('popup-view-resource');
-        divBtn.innerHTML = await App.IconManager.getOpenInNewTab() + ' VIEW SITE';
+
+        const viewBtnText = !Utils.Function.empty(item.isWeb) ? ' VIEW SITE' : !Utils.Function.empty(item.isMobile) ? ' VIEW APP' : 'undefined';
+        divBtn.innerHTML = await App.IconManager.getOpenInNewTab() + viewBtnText;
         resourceLinkElem.appendChild(divBtn);
         divPopUp.appendChild(resourceLinkElem);
 
@@ -697,6 +714,64 @@ const App = {
                 });
             }
         });
+    },
+    initShowcaseProject: async function (projectTitle = decodeURIComponent(window.location.href).split('#')[1] ?? '') {
+        const showcaseProject = document.getElementById("showcase-project");
+        if (Utils.Function.empty(showcaseProject)) {
+            return;
+        }
+
+        const myProject = await new Promise(async (resolve) => {
+            Utils.Function.ajax('data/portfolio.json', function ({response, httpCode}) {
+                if (httpCode == 200) {
+                    resolve(JSON.parse(response).filter(item => item.title === projectTitle)[0] ?? undefined);
+                }
+                resolve(undefined);
+            });
+        });
+
+        if (Utils.Function.empty(myProject)) {
+            confirm('hello error');
+            App.loader.loadPage("/404.html", 10);
+        }
+
+        const title = document.getElementById('showcase-project-title'),
+        description = document.getElementById('showcase-projet-description'),
+        showcase = document.getElementById('myProjectToShowcase');
+
+        // create title
+        for (let index = 0; index < myProject.title.length; index++) {
+            const char = myProject.title.charAt(index);
+            const span = document.createElement('span');
+            span.style.opacity = 1;
+
+            if (char !== ' ') {
+                span.classList.add('blast');
+                span.classList.add('spin-me');
+                span.classList.add('space-right');
+                span.setAttribute('aria-hidden', true);
+                span.innerHTML = char;
+            } else {
+                span.innerHTML = char;
+            }
+            title.appendChild(span);
+            if (char === ',' || char === '&') {
+                title.appendChild(document.createElement('br'));
+            }
+        }
+
+        description.innerHTML = myProject.description;
+
+        if (!Utils.Function.empty(myProject.apkDemoLink)) {
+            const iframe = document.createElement('iframe');
+            iframe.src = myProject.apkDemoLink;
+            iframe.sandbox = 'allow-same-origin allow-scripts';
+            iframe.setAttribute('frameborder', 0);
+            iframe.allowfullscreen = true;
+            iframe.style.height = '100%';
+            iframe.style.margin = 'auto';
+            showcase.appendChild(iframe);
+        }
     },
     initContactInfo: function () {
         const workWall = document.getElementById("section-contact");
