@@ -630,26 +630,28 @@ const App = {
 
         divPopUp.appendChild(modalInfo);
 
-        const resourceLinkElem = document.createElement('a');
-        resourceLinkElem.style.textDecoration = 'none';
-        resourceLinkElem.style.cursor = 'pointer';
-        if (!Utils.Function.empty(item.isMobile) && !Utils.Function.empty(item.apkDemoLink)) {
-            resourceLinkElem.addEventListener('click', function() {
-                App.closePortfolioItem(divPopUp1, index);
-                App.loader.loadPage(`/showcase-project.html#${item.title}`, 10);
-            });
-        } else {
-            resourceLinkElem.href = item.appLink;
-            resourceLinkElem.target = '_blank';
+        if (!Utils.Function.empty(item.appLink) || !Utils.Function.empty(item.apkDemoLink)) {
+            const resourceLinkElem = document.createElement('a');
+            resourceLinkElem.style.textDecoration = 'none';
+            resourceLinkElem.style.cursor = 'pointer';
+            if (!Utils.Function.empty(item.isMobile) && !Utils.Function.empty(item.apkDemoLink)) {
+                resourceLinkElem.addEventListener('click', function() {
+                    App.closePortfolioItem(divPopUp1, index);
+                    App.loader.loadPage(`/showcase-project.html#${item.title}`, 10);
+                });
+            } else {
+                resourceLinkElem.href = item.appLink;
+                resourceLinkElem.target = '_blank';
+            }
+    
+            const divBtn = document.createElement('div');
+            divBtn.classList.add('popup-view-resource');
+    
+            const viewBtnText = !Utils.Function.empty(item.isWeb) ? ' VIEW SITE' : !Utils.Function.empty(item.isMobile) ? ' VIEW APP' : 'undefined';
+            divBtn.innerHTML = await App.IconManager.getOpenInNewTab() + viewBtnText;
+            resourceLinkElem.appendChild(divBtn);
+            divPopUp.appendChild(resourceLinkElem);
         }
-
-        const divBtn = document.createElement('div');
-        divBtn.classList.add('popup-view-resource');
-
-        const viewBtnText = !Utils.Function.empty(item.isWeb) ? ' VIEW SITE' : !Utils.Function.empty(item.isMobile) ? ' VIEW APP' : 'undefined';
-        divBtn.innerHTML = await App.IconManager.getOpenInNewTab() + viewBtnText;
-        resourceLinkElem.appendChild(divBtn);
-        divPopUp.appendChild(resourceLinkElem);
 
         // Create close button
         const closeBtnElem = document.createElement('i');
