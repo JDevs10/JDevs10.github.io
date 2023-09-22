@@ -1047,12 +1047,70 @@ const App = {
                 return key; // Return the key itself as a fallback
             }
         }
+    },
+    TranslationServiceV2: class {
+        constructor() {
+            this.translations = {};
+            this.currentLanguage = 'en'; // Default language
+        }
+
+        async loadLanguage(language) {
+            // Load translations for the specified language
+            try {
+                const response = await fetch(`lang/lang-${language}.json`);
+                if (response.status === 200) {
+                    this.translations[language] = await response.json();
+                    this.currentLanguage = language;
+                } else {
+                    console.error(`Failed to load translations for language: ${language}`);
+                }
+            } catch (error) {
+                console.error(`Error loading translations: ${error.message}`);
+            }
+        }
+
+        translate(key) {
+            const translation = this.translations[this.currentLanguage];
+            if (!translation || !translation[key]) {
+                console.warn(`Translation for key '${key}' not found in '${this.currentLanguage}' language.`);
+                return key;
+            }
+        
+            return translation[key];
+        }
+
+        replaceLanguageVariables(html) {
+            // Replace language variables in the HTML content
+            const regex = /{{'lang\.(.*?)' \| translate}}/g;
+            return html.replace(regex, (match, key) => {
+                console.log('replaceLanguageVariables', match, key);
+                return this.translate(key.trim());
+            });
+        }
     }
 };
 
-window.onload = (e) => {
+window.onload = async (e) => {
     if (e.currentTarget.innerWidth < 1200) {App.MOBILE = true;} else {App.MOBILE = false;}
     if (!App.READY) {
+
+        // Parse the current html body page and translate all the lang keys
+        const innerHtmlBodyPage = await new Promise((resolve) => {
+            Utils.Function.ajax(e.srcElement.URL, function({response}) {
+                const translateService = new App.TranslationServiceV2();
+                // Load translations for the current language (e.g., 'en' or 'fr')
+                translateService.loadLanguage('en').then(() => {
+                    // Replace language variables in an HTML string
+                    const html = response;
+                    const translatedHtml = translateService.replaceLanguageVariables(html);
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(translatedHtml, 'text/html');
+                    resolve(doc.getElementsByTagName('body')[0].innerHTML);
+                });
+            });
+        });
+
+        document.body.innerHTML = innerHtmlBodyPage;
         App.init();
 
         if (Utils.Function.isScriptAdded('js/tagcanvas.js')) {
