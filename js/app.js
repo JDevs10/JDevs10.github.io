@@ -65,7 +65,6 @@ const App = {
         }
     ],
     init: async function () {
-        await this.TranslateService.init('en');
         this.initIcon();
         this.initMenu();
         this.welcomeCanvas.init();
@@ -78,7 +77,7 @@ const App = {
         this.initShowcaseProject();
         this.initResponsive();
 
-        console.log(this.TranslateService.instant("greeting", {string: 'JDevs10'}));
+        console.log(App.TranslationServiceObj.translate("greeting", {string: 'JDevs10'}));
 
         document.addEventListener('error', (event) => {
             window.location.href = "./404.html";
@@ -1005,55 +1004,21 @@ const App = {
             });
         }
     },
-    TranslateService: {
-        availableLanguage: ['en', 'fr'],
-        currentLanguage: 'en', // Default language
-        lang: {},
-        /**
-         * Fetch and load selected lang json
-         * @param {string} language
-         */
-        init: async function(language) {
-            App.TranslateService.currentLanguage = language;
-            App.TranslateService.lang = await new Promise(async (resolve) => {
-                await Utils.Function.ajax(`lang/lang-${App.TranslateService.currentLanguage}.json`, function ({response, httpCode}) {
-                    if (httpCode == 200) {
-                        resolve(JSON.parse(response));
-                    }
-                    resolve(JSON.parse('{}'));
-                });
-            });
-        },
-        /**
-         * Translate with params if needed
-         * @param {string | Array<string>} key 
-         * @param {Object} interpolateParams 
-         * @returns {string | any}
-         */
-        instant(key, interpolateParams = {}) {
-            const translation = App.TranslateService.lang[key];
-            if (!Utils.Function.empty(translation)) {
-                // Perform interpolation if there are interpolateParams
-                if (
-                    !Utils.Function.empty(interpolateParams) && 
-                    typeof interpolateParams === "object"
-                ) {
-                    return Object.keys(interpolateParams).reduce((result, paramKey) => result.replace(`{{${paramKey}}}`, interpolateParams[paramKey]), translation);
-                } else {
-                    return translation;
-                }
-            } else {
-                console.warn(`Translation for key '${key}' not found in '${App.TranslateService.currentLanguage}' language.`);
-                return key; // Return the key itself as a fallback
-            }
-        }
-    },
-    TranslationServiceV2: class {
+    TranslationServiceObj: null,
+    TranslationService: class {
         constructor() {
             this.translations = {};
             this.currentLanguage = 'en'; // Default language
         }
 
+        /**
+         * Asynchronously load translations for the specified language and update the current language.
+         *
+         * @param {string} language - The language code (e.g., 'en' or 'fr') for which to load translations.
+         *
+         * @returns {Promise<void>} A promise that resolves when the translations are loaded successfully
+         *                          or rejects if an error occurs during the loading process.
+         */
         async loadLanguage(language) {
             // Load translations for the specified language
             try {
@@ -1066,25 +1031,81 @@ const App = {
                 }
             } catch (error) {
                 console.error(`Error loading translations: ${error.message}`);
+                throw error;
             }
         }
 
-        translate(key) {
+        /**
+         * Asynchronously load translations for the specified language and update the current language.
+         *
+         * @param {string} language - The language code (e.g., 'en' or 'fr') for which to load translations.
+         *
+         * @returns {Promise<void>} A promise that resolves when the translations are loaded.
+         */
+
+        /**
+         * Translate a language key with optional interpolation.
+         *
+         * @param {string} key - The language key to translate.
+         * @param {Object} [interpolateParams={}] - Optional parameters for interpolation.
+         *
+         * @example
+         * // Translates the "greeting" key with the "string" parameter interpolated.
+         * // Returns: "Hello User!"
+         * TranslateService.instant("greeting", { string: "User" });
+         *
+         * @returns {string} The translated string or the original key if translation is not found.
+         */
+        translate(key, interpolateParams = {}) {
             const translation = this.translations[this.currentLanguage];
-            if (!translation || !translation[key]) {
+            if (!Utils.Function.empty(translation[key])) {
+                // Perform interpolation if there are interpolateParams
+                if (
+                    !Utils.Function.empty(interpolateParams) && 
+                    typeof interpolateParams === "object"
+                ) {
+                    return Object.keys(interpolateParams).reduce((result, paramKey) => result.replace(`{{${paramKey}}}`, interpolateParams[paramKey]), translation[key]);
+                } else {
+                    return translation[key];
+                }
+            } else {
                 console.warn(`Translation for key '${key}' not found in '${this.currentLanguage}' language.`);
-                return key;
+                return key; // Return the key itself as a fallback
             }
-        
-            return translation[key];
         }
 
+        /**
+         * Replace lang key placeholders with their corresponding values.
+         * This function is primarily used for translating HTML pages.
+         *
+         * @param {string} html - The HTML content with lang key placeholders.
+         * @example
+         * // Input:
+         * // <p>{{'lang.helloWorld' | translate}}</p>
+         * // Output:
+         * // <p>Hello World!</p>
+         *
+         * @example
+         * // Input:
+         * // <p>{{'lang.greeting' | translate : {"string": "User"}}}</p>
+         * // Output:
+         * // <p>Hello User!</p>
+         *
+         * @returns {string} The HTML content with all lang variables translated.
+         */
         replaceLanguageVariables(html) {
-            // Replace language variables in the HTML content
-            const regex = /{{'lang\.(.*?)' \| translate}}/g;
-            return html.replace(regex, (match, key) => {
-                console.log('replaceLanguageVariables', match, key);
-                return this.translate(key.trim());
+            // This regex pattern is designed to match expressions like {{'lang.greeting' | translate : {"key": "value"}}} and capture different parts of it.
+            const regex = /{{'lang\.(.*?)'\s*\|\s*translate(\s*:\s*({[^}]*}))?}}/g;
+
+            /**
+             * In the regex callback function, we're using the captured components as follows:
+             * - langKey: Represents the captured lang key.
+             * - colon: Discards the captured colon (:) since it's not needed.
+             * - interpolateParams: Represents the captured interpolateParams as a string.
+             */
+            return html.replace(regex, (match, langKey, colon, interpolateParams) => {
+                const params = !Utils.Function.empty(interpolateParams) ? JSON.parse(interpolateParams) : {};
+                return this.translate(langKey.trim(), params);
             });
         }
     }
@@ -1097,12 +1118,12 @@ window.onload = async (e) => {
         // Parse the current html body page and translate all the lang keys
         const innerHtmlBodyPage = await new Promise((resolve) => {
             Utils.Function.ajax(e.srcElement.URL, function({response}) {
-                const translateService = new App.TranslationServiceV2();
+                App.TranslationServiceObj = new App.TranslationService();
                 // Load translations for the current language (e.g., 'en' or 'fr')
-                translateService.loadLanguage('en').then(() => {
+                App.TranslationServiceObj.loadLanguage('en').then(() => {
                     // Replace language variables in an HTML string
                     const html = response;
-                    const translatedHtml = translateService.replaceLanguageVariables(html);
+                    const translatedHtml = App.TranslationServiceObj.replaceLanguageVariables(html);
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(translatedHtml, 'text/html');
                     resolve(doc.getElementsByTagName('body')[0].innerHTML);
