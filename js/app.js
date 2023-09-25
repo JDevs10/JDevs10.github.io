@@ -121,6 +121,8 @@ const App = {
                 const _myMenu = document.getElementById("myMenu");
                 _myMenu.style.display = 'flex';
                 _myMenu.style.opacity = '1';
+                _myMenu.style.overflowY = 'auto';
+                _myMenu.style.paddingBottom = '100px';
             });
             document.getElementsByTagName('body')[0].appendChild(menuMobileBtn);
         }
