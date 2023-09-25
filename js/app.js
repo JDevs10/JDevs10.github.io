@@ -793,12 +793,12 @@ const App = {
             myProject.tags.forEach(tag => {
                 const tagElem = document.createElement('div');
                 tagElem.classList.add('projectTag');
-                tagElem.innerHTML = tag;
+                tagElem.innerHTML = App.TranslationServiceObj.translate(tag);
                 projectTags.appendChild(tagElem);
             });
         }
 
-        description.innerHTML = myProject.description;
+        description.innerHTML = App.TranslationServiceObj.translate(myProject.description);
 
         if (!Utils.Function.empty(myProject.apkDemoLink)) {
             const iframe = document.createElement('iframe');
