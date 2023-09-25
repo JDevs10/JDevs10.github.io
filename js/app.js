@@ -20,11 +20,11 @@ const App = {
         "I didn't come this far to only come this far."
     ],
     mainMenuNav: [
-        {rel: "about", label: "About"},
-        {rel: "skills", label: "My Skills"},
-        {rel: "portfolio", label: "Portfolio"},
-        {rel: "blog", label: "Blog"},
-        {rel: "contact", label: "Contact"}
+        {rel: "about", label: "lang.about"},
+        {rel: "skills", label: "lang.skills"},
+        {rel: "portfolio", label: "lang.portfolio"},
+        {rel: "blog", label: "lang.blog"},
+        {rel: "contact", label: "lang.contact"}
     ],
     mySocials: [
         {
@@ -125,8 +125,11 @@ const App = {
             document.getElementsByTagName('body')[0].appendChild(menuMobileBtn);
         }
 
-        const headerMenu = document.createElement('div');
-        headerMenu.classList.add('main-menu-top');
+        const headerMenu = document.createElement('div'), 
+        topDivHeaderMenu = document.createElement('div'), 
+        bottomDivHeaderMenu = document.createElement('div');
+
+        topDivHeaderMenu.classList.add('main-menu-top');
         const htlLogoLink = document.createElement('a');
         htlLogoLink.classList.add('logo');
         htlLogoLink.rel = "home";
@@ -144,11 +147,17 @@ const App = {
         const span1 = document.createElement('span');
         span1.innerHTML="Jean-Laurent";
         htlLogoLink.appendChild(span1);
-        headerMenu.appendChild(htlLogoLink);
-        headerMenu.appendChild(document.createElement('br'));
+        topDivHeaderMenu.appendChild(htlLogoLink);
+        topDivHeaderMenu.appendChild(document.createElement('br'));
         const span2 = document.createElement('span');
-        span2.innerHTML="Full-Stack Developer";
-        headerMenu.appendChild(span2);
+        span2.innerHTML = App.TranslationServiceObj.translate("fullStackDeveloper");
+        topDivHeaderMenu.appendChild(span2);
+        headerMenu.appendChild(topDivHeaderMenu);
+
+        bottomDivHeaderMenu.classList.add('main-menu-lang');
+        this.TranslationService.initHtml(bottomDivHeaderMenu);
+        headerMenu.appendChild(bottomDivHeaderMenu);
+
         myMenu.appendChild(headerMenu);
 
         const navContent = document.createElement('nav');
@@ -164,7 +173,7 @@ const App = {
                     }
                     App.loader.loadPage(`${elem.rel}.html`);
                 });
-                btn.innerHTML = elem.label;
+                btn.innerHTML = App.TranslationServiceObj.translate(elem.label);
                 btn.rel = elem.rel;
                 btn.style.cursor = 'pointer';
                 navContent.appendChild(btn);
@@ -356,9 +365,7 @@ const App = {
                 this.size = Utils.Math.getRandomBetween(2, 4)
 
                 if (this.constructed) {
-                    // this.rgba = [182, 112, 16, 1]
                     this.rgba = [0, 170, 255, 1]
-                    // this.rgba = [112, 111, 211, 1]
                 } else {
                     this.rgba = [0, 0, 0, 0]
                 }
@@ -501,7 +508,6 @@ const App = {
             if (httpCode == 200) {
                 const jsonData = JSON.parse(response);
                 const list = document.createElement('ul');
-                // list.classList.add('magicwall-grid');
 
                 for (let index = 0; index < jsonData.length; index++) {
                     const item = jsonData[index];
@@ -622,7 +628,7 @@ const App = {
 
         const tagElem = document.createElement('div');
         tagElem.classList.add('label');
-        tagElem.innerHTML = item.label ?? '';
+        tagElem.innerHTML = App.TranslationServiceObj.translate(item.label) ?? '';
         modalInfo.appendChild(tagElem);
 
         const tagsDivElem = document.createElement('div');
@@ -635,7 +641,7 @@ const App = {
             item.tags.forEach(tag => {
                 const tagElem = document.createElement('div');
                 tagElem.classList.add('projectTag');
-                tagElem.innerHTML = tag;
+                tagElem.innerHTML = App.TranslationServiceObj.translate(tag);
                 tagsDivElem.appendChild(tagElem);
             });
         }
@@ -643,7 +649,7 @@ const App = {
 
         const detailElem = document.createElement('div');
         detailElem.classList.add('detail');
-        detailElem.innerHTML = item.description;
+        detailElem.innerHTML = App.TranslationServiceObj.translate(item.description);
         modalInfo.appendChild(detailElem);
 
         divPopUp.appendChild(modalInfo);
@@ -717,18 +723,18 @@ const App = {
                     box.classList.add('work-box');
 
                     const header = document.createElement('header');
-                    header.innerText = item.header;
+                    header.innerText = App.TranslationServiceObj.translate(item.header);
                     box.appendChild(header);
 
                     const section = document.createElement('section');
                     section.innerText = item.section;
                     const date = document.createElement('time');
-                    date.innerText = item.date;
+                    date.innerText = App.TranslationServiceObj.translate(item.date);
                     section.appendChild(date);
                     box.appendChild(section);
 
                     const footer = document.createElement('footer');
-                    footer.innerText = item.footer;
+                    footer.innerText = App.TranslationServiceObj.translate(item.footer);
                     box.appendChild(footer);
                     workWall.appendChild(box);
                 });
@@ -1006,9 +1012,120 @@ const App = {
     },
     TranslationServiceObj: null,
     TranslationService: class {
+        static mainLangContainer = 'main-menu-lang-container'; 
+        static localStorageLanguageTranslationKey = 'languageFor_jdevs10.github.io';
+        static availableLanguage = [
+            {
+                type: 'en',
+                label: 'English language',
+                icon: 'img/icons/lang/flag-gb.svg'
+            },
+            {
+                type: 'fr',
+                label: 'Frenh language',
+                icon: 'img/icons/lang/flag-fr.svg'
+            }
+        ];
+
         constructor() {
             this.translations = {};
             this.currentLanguage = 'en'; // Default language
+            const savedLanguage = Utils.Sessiontorage.get(App.TranslationService.localStorageLanguageTranslationKey);
+            if (!Utils.Function.empty(savedLanguage)) {
+                this.currentLanguage = JSON.parse(savedLanguage).type;
+            } else {
+                const obj = {
+                    id: 0, 
+                    type: App.TranslationService.availableLanguage[0].type, 
+                    clientWidth: 40, 
+                    offsetLeft: 5
+                };
+                Utils.Sessiontorage.save(App.TranslationService.localStorageLanguageTranslationKey, JSON.stringify(obj));
+            }
+        }
+
+        /**
+         * @param {HTMLElement} containerElem 
+         */
+        static initHtml(containerElem) {
+            if (!Utils.Function.empty(containerElem)) {
+                const ul = document.createElement('ul');
+                ul.setAttribute('id', App.TranslationService.mainLangContainer);
+                ul.classList.add('lang');
+                ul.addEventListener('wheel', (event) => {
+                    ul.scrollLeft += event.deltaY;
+                    event.preventDefault(); // Prevent vertical scrolling
+                });
+
+                this.availableLanguage.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    const img = document.createElement('img');
+                    img.setAttribute('index', index);
+                    img.addEventListener('click', function() {
+                        img.style.borderWidth = 'thick';
+                        img.style.borderColor = '#00AAFF';
+                        img.style.borderWidth = '2px';
+                        App.TranslationService.scrollToLanguage(img.clientWidth, img.offsetLeft);
+                        setTimeout(() => {
+                            const obj = {index: index, type: item.type};
+                            App.TranslationService.saveLanguage(JSON.stringify(obj));
+                        }, 300);
+                    });
+
+                    img.classList.add('lang-item');
+                    img.title = item.label;
+                    img.alt = item.label;
+                    img.src = item.icon;
+                    img.srcset = item.icon;
+                    img.style.borderWidth = 'thick';
+                    img.style.borderColor = 'transparent';
+
+                    ul.appendChild(li.appendChild(img));
+                });
+                containerElem.appendChild(ul);
+
+                setTimeout(() => {
+                    const savedLanguage = Utils.Sessiontorage.get(App.TranslationService.localStorageLanguageTranslationKey);
+                    if (!Utils.Function.empty(savedLanguage)) {
+                        const {index} = JSON.parse(savedLanguage);
+                        const img = document.querySelector(`#main-menu-lang-container img:nth-child(${index+1})`);
+                        img.style.borderWidth = '2px';
+                        img.style.borderColor = '#00AAFF';
+                        App.TranslationService.scrollToLanguage(img.clientWidth, img.offsetLeft);
+                    }
+                }, 200)
+            }
+        }
+
+        /**
+         * Function to scroll to a specific language
+         * @param {number} itemWidth_ 
+         * @param {number} itemOffset_ 
+         */
+        static scrollToLanguage(itemWidth_, itemOffset_) {
+            console.log(itemWidth_, itemOffset_);
+
+            const container = document.getElementById(App.TranslationService.mainLangContainer);
+            if (!Utils.Function.empty(container)) {
+                const containerWidth = container.clientWidth;
+                const itemWidth = itemWidth_;
+                const itemOffsetLeft = itemOffset_;
+
+                // Calculate the scroll position to center the selected language
+                const scrollTo = itemOffsetLeft - (containerWidth - itemWidth) / 2;
+
+                container.scrollTo({
+                    left: scrollTo,
+                    behavior: 'smooth', // Add smooth scrolling animation
+                });
+            }
+        }
+
+        static saveLanguage(language) {
+            if (!Utils.Function.empty(language)) {
+                Utils.Sessiontorage.save(App.TranslationService.localStorageLanguageTranslationKey, language);
+                location.reload();
+            }
         }
 
         /**
@@ -1019,7 +1136,7 @@ const App = {
          * @returns {Promise<void>} A promise that resolves when the translations are loaded successfully
          *                          or rejects if an error occurs during the loading process.
          */
-        async loadLanguage(language) {
+        async loadLanguage(language = this.currentLanguage) {
             // Load translations for the specified language
             try {
                 const response = await fetch(`lang/lang-${language}.json`);
@@ -1058,6 +1175,7 @@ const App = {
          */
         translate(key, interpolateParams = {}) {
             const translation = this.translations[this.currentLanguage];
+            key = key.replace('lang.', '');
             if (!Utils.Function.empty(translation[key])) {
                 // Perform interpolation if there are interpolateParams
                 if (
@@ -1096,6 +1214,7 @@ const App = {
         replaceLanguageVariables(html) {
             // This regex pattern is designed to match expressions like {{'lang.greeting' | translate : {"key": "value"}}} and capture different parts of it.
             const regex = /{{'lang\.(.*?)'\s*\|\s*translate(\s*:\s*({[^}]*}))?}}/g;
+            const regexOnlyFindLang = /'lang\.(.*?)'\s*\|\s*translate(\s*:\s*({[^}]*}))?/g;
 
             /**
              * In the regex callback function, we're using the captured components as follows:
@@ -1103,7 +1222,11 @@ const App = {
              * - colon: Discards the captured colon (:) since it's not needed.
              * - interpolateParams: Represents the captured interpolateParams as a string.
              */
-            return html.replace(regex, (match, langKey, colon, interpolateParams) => {
+            const parseHtml = html.replace(regex, (match, langKey, colon, interpolateParams) => {
+                const params = !Utils.Function.empty(interpolateParams) ? JSON.parse(interpolateParams) : {};
+                return this.translate(langKey.trim(), params);
+            });
+            return parseHtml.replace(regexOnlyFindLang, (match, langKey, colon, interpolateParams) => {
                 const params = !Utils.Function.empty(interpolateParams) ? JSON.parse(interpolateParams) : {};
                 return this.translate(langKey.trim(), params);
             });
@@ -1120,7 +1243,7 @@ window.onload = async (e) => {
             Utils.Function.ajax(e.srcElement.URL, function({response}) {
                 App.TranslationServiceObj = new App.TranslationService();
                 // Load translations for the current language (e.g., 'en' or 'fr')
-                App.TranslationServiceObj.loadLanguage('en').then(() => {
+                App.TranslationServiceObj.loadLanguage().then(() => {
                     // Replace language variables in an HTML string
                     const html = response;
                     const translatedHtml = App.TranslationServiceObj.replaceLanguageVariables(html);

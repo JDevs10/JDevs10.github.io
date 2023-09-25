@@ -1,12 +1,12 @@
 [
     {
         "title": "Maarch Courrier",
-        "label": "Web Application",
-        "tags" : ["Company Project", "Open Source"],
+        "label": "lang.webApplication",
+        "tags" : ["lang.companyProject", "lang.openSource"],
         "isWeb": true,
         "appLink": "https://preview.maarchcourrier.com",
         "thumbnail": "img/MaarchCourrier/logo_only.svg",
-        "description": "<b>Maarch Courrier</b> is a comprehensive Electronic Document Management (EDM) and Electronic Mail Management (EMM) system.<br>It handles Incoming, Outgoing, Internal mail, as well as EDM documents with extensive functionality.<br>Maarch Courrier is ready to use, <b>completely free</b>, and suitable for both simple and complex needs.<br>This guide is tailored for the online demonstration at https://demo.maarchcourrier.com.<br>It showcases the application configured for managing mail and documents for an organization. Follow the steps in order to make the most of the guide!<br>You can find a wealth of useful information about Maarch Courrier on our websites: <ul><li>A product of the company <a href=\"https://maarch.com/maarch-courrier\" target=\"_blank\">Maarch</a></li><li>Technical Requirements (Server and Client Workstation): <a href=\"https://docs.maarch.org/MaarchCourrier/guat/guat_prerequisites/home.html\" target=\"_blank\">See Requirements</a></li><li>Administrator Manual <a href=\"https://docs.maarch.org/MaarchCourrier\" target=\"_blank\">https://docs.maarch.org/MaarchCourrier</a></li><li>Maarch Community: <a href=\"https://community.maarch.org\" target=\"_blank\">https://community.maarch.org</a></li></ul>",
+        "description": "lang.maarchCourrierDescription",
         "carouselImgs": [
             "img/MaarchCourrier/maarch-courrier-admin.png",
             "img/MaarchCourrier/maarch-courrier-loging.png",
@@ -15,12 +15,12 @@
     },
     {
         "title": "Maarch Parapheur",
-        "label": "Web Application",
-        "tags" : ["Company Project", "Open Source"],
+        "label": "lang.webApplication",
+        "tags" : ["lang.companyProject", "lang.openSource"],
         "isWeb": true,
         "appLink": "https://preview.maarchparapheur.com",
         "thumbnail": "img/MaarchParapheur/favicon.png",
-        "description": "Maarch Parapheur responds to these needs with the open-source electronic signature tool. Whether you are a local authority, government agency with or without Maarch Courrier, or any other organization with these needs, this solution is designed for you.<br>Derived from new technologies specialized in the ergonomics of business software such as Angular, the electronic signature tool offers a smooth and user-friendly interface.<br>Connected to Maarch Courrier or fully autonomous, this latest-generation electronic signature tool allows annotation, electronic signing, signature in pen mode, and electronic certification of any PDF document, for all participants in the process.<h4>Main Features of Maarch Parapheur</h4><ul><li>Annotation and handwriting</li><li>Electronic signature</li><li>Complete operational environment</li></ul>You can find a wealth of useful information about Maarch Parapheur on our websites: <ul><li>A product of the company <a href=\"https://maarch.com/maarch-parapheur/\" target=\"_blank\">Maarch</a></li><li>Technical Requirements (Server and Client Workstation): <a href=\"https://docs.maarch.org/MaarchParapheur/guat/guat_prerequisites/home.html\" target=\"_blank\">See Requirements</a></li><li>Administrator Manual <a href=\"https://docs.maarch.org/MaarchParapheur/\" target=\"_blank\">https://docs.maarch.org/MaarchParapheur/</a></li><li>Maarch Community: <a href=\"https://community.maarch.org\" target=\"_blank\">https://community.maarch.org</a></li></ul>",
+        "description": "lang.maarchParapheurDescription",
         "carouselImgs": [
             "img/MaarchParapheur/MaarchParapheur-admin.png",
             "img/MaarchParapheur/MaarchParapheur-doc-circuit.png",
@@ -29,12 +29,12 @@
     },
     {
         "title": "Pacman",
-        "label": "Web Gaming",
-        "tags" : ["Personal Project"],
+        "label": "lang.webGaming",
+        "tags" : ["lang.personalProject"],
         "isWeb": true,
         "appLink": "https://jdevs10.github.io/Pacman-Web-Game",
         "thumbnail": "img/Classified-Stamp.png",
-        "description": "Creating a fun basic Pacman game on the web :)",
+        "description": "lang.pacmanDescription",
         "carouselImgs": [
             "img/Pacman/carousel-1.png",
             "img/Pacman/carousel-2.png",
@@ -43,12 +43,12 @@
     },
     {
         "title": "iSales Pro",
-        "label": "Mobile App - Professional",
-        "tags" : ["Company Project"],
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iSales_Pro___",
         "thumbnail": "img/isalesPro/isalesPro-presentation-store.png",
-        "description": "iSales Pro is a comprehensive commercial management and order-taking solution specially designed to simplify the sales process for your customers and sales agents. With iSales, you benefit from an intuitive and user-friendly platform that allows your customers to place orders easily, whether it's from a tablet or a mobile phone.",
+        "description": "lang.iSalesProDescription",
         "carouselImgs": [
             "img/isalesPro/isalesPro-presentation-store.png",
             "img/isalesPro/1-isalesPro-presentation-store.webp",
@@ -63,12 +63,12 @@
     },
     {
         "title": "iStock",
-        "label": "Mobile App - Professional",
-        "tags" : ["Company Project"],
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iStock",
         "thumbnail": "img/istock/istock-presentation-store.png",
-        "description": "iStock is a warehouse management application on a Zebra PDA developed by Big Data Consulting. The application allows your warehouse personnel to prepare orders before they are sent out by a delivery person directly on the PDA. It has been specially designed for professionals. It is a one-of-a-kind software.<br>The application has the following features :<ul><li>Identification</li><li>Synchronization</li><li>Local Database</li><li>Order Preparation Management</li><li>Shipment Management</li><li>Inventory Management (with Lot/Serial Number)</li><li>Contact Support</li></ul>",
+        "description": "lang.iStockDescription",
         "carouselImgs": [
             "img/istock/istock-presentation-store.png",
             "img/istock/1-istock-presentation-store.jpg",
@@ -82,12 +82,12 @@
     },
     {
         "title": "iInventaire",
-        "label": "Mobile App - Professional",
-        "tags" : ["Company Project"],
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iinventaire",
         "thumbnail": "img/iinventaire/iInventaire-presentation-store.png",
-        "description": "iInventaire is a warehouse management application on a Zebra PDA developed by Big Data Consulting. The application allows your warehouse personnel to update their inventories directly on the PDA.<br>The application has the following features :<ul><li>Authentication</li><li>Stock Correction</li><li>Stock Transfer</li><li>Sync Pending</li><li>SSH Connection</li><li>File System Manager</li><li>Encryption/Decryption Manager</li><li>\"Dollibar Lot/Serial Numbers\" Module</li></ul>",
+        "description": "lang.iInventaireDescription",
         "carouselImgs": [
             "img/iinventaire/iInventaire-presentation-store.png",
             "img/iinventaire/1-iInventaire-presentation-store.png",
@@ -103,12 +103,12 @@
     },
     {
         "title": "iNetty Mobile",
-        "label": "Mobile App - Professional",
-        "tags" : ["Company Project"],
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
         "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.anexys.inetty",
         "thumbnail": "img/inetty/inetty-presentation-store.png",
-        "description": "iNetty is a simple and intuitive application that allows you to simplify the planning and management of your field interventions while increasing your productivity. With our solution, you can schedule your interventions, saving time and optimizing your productivity. iNetty's automatic planning tunnel makes handling your interventions easier, allowing you to efficiently manage your schedules, technicians, and teams. Our application offers real-time synchronization, enabling you to access data related to interventions and the customer database registered with your client. Simplify the planning of your interventions with iNetty and optimize your productivity now.",
+        "description": "lang.iNettyMobileDescription",
         "carouselImgs": [
             "img/inetty/inetty-presentation-store.png",
             "img/inetty/1-inetty-presentation-store.jpg",
@@ -123,13 +123,13 @@
     },
     {
         "title": "Project T.A.",
-        "label": "Mobile App - Personal",
-        "tags" : ["Personal Project", "In Development"],
+        "label": "lang.personalMobileApp",
+        "tags" : ["lang.personalProject", "lang.inDevelopment"],
         "isMobile": true,
         "apkDemoLink": "",
         "appLink": "",
         "thumbnail": "img/Classified-Stamp.png",
-        "description": "Description under construction...",
+        "description": "lang.projectTA",
         "carouselImgs": [
             "img/Classified-Stamp.png",
             "img/Classified-Stamp.png"
