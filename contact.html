@@ -32,29 +32,29 @@
                                 <div class="infoBlock">
                                     <div class="infoWrap">
                                         <header>
-                                            <h3 class="blast-root" aria-label="Contact me"></h3>
+                                            <h3 class="blast-root" aria-label="{{'lang.contactMe' | translate}}"></h3>
                                         </header>
                                         <ul>
                                             <li class="phone"><a href="tel:+33766112937">+33766112937</a></li>
                                             <li class="mail"><a href="mailto:jl.duzant97150@outlook.com">jl.duzant97150@outlook.com</a></li>
-                                            <li class="adr"><a href="https://goo.gl/maps/JXxyiPtmvqbSa6b87" target="_blank">In Paris</a></li>
+                                            <li class="adr"><a href="https://goo.gl/maps/JXxyiPtmvqbSa6b87" target="_blank">{{'lang.inParis' | translate}}</a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="pitchBlock">
                                     <form id="sendContact" class="infoWrap">
                                         <header>
-                                            <h3 class="blast-root" aria-label="Pitch me"></h3>
+                                            <h3 class="blast-root" aria-label="{{'lang.pitchMe' | translate}}"></h3>
                                         </header>
                                         <div class="text">
                                             <input type="text" class="contactNameInpt">
                                             <input type="text" class="contactMailInpt">
                                             <input type="text" class="contactProjectInpt">
-                                            Hello,<br>
+                                            {{'lang.contactPart1Hello' | translate}},<br>
                                             <br>
-                                            my name is <div class="cFormInput" contenteditable="true" data-target="contactNameInpt"></div> and my e-mail address is <div class="cFormInput" contenteditable="true" data-target="contactMailInpt"></div> and I would like to discuss about <div class="cFormInput" contenteditable="true" data-target="contactProjectInpt"></div>.<br>
+                                            {{'lang.contactPart2MyNameIs' | translate}} <div class="cFormInput" contenteditable="true">{{'lang.contactPart3YourName' | translate}}</div>, {{'lang.contactPart4MyEmailIs' | translate}} <div class="cFormInput" contenteditable="true">{{'lang.contactPart5YourEmail' | translate}}</div> {{'lang.contactPart6WantToTalkAbout' | translate}} <div class="cFormInput" contenteditable="true">{{'lang.contactPart7ThisProject' | translate}}</div>.<br>
                                         </div>
-                                        <button type="button" class="gradButton" onclick="Notify.send({});">Send Me</button>
+                                        <button type="button" class="gradButton" onclick="Notify.send({});">{{'lang.sendMe' | translate}}</button>
                                     </form>
                                 </div>
                             </div>

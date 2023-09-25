@@ -20,11 +20,11 @@ const App = {
         "I didn't come this far to only come this far."
     ],
     mainMenuNav: [
-        {rel: "about", label: "About"},
-        {rel: "skills", label: "My Skills"},
-        {rel: "portfolio", label: "Portfolio"},
-        {rel: "blog", label: "Blog"},
-        {rel: "contact", label: "Contact"}
+        {rel: "about", label: "lang.about"},
+        {rel: "skills", label: "lang.skills"},
+        {rel: "portfolio", label: "lang.portfolio"},
+        {rel: "blog", label: "lang.blog"},
+        {rel: "contact", label: "lang.contact"}
     ],
     mySocials: [
         {
@@ -64,7 +64,7 @@ const App = {
             svgPathD: "M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"
         }
     ],
-    init: function () {
+    init: async function () {
         this.initIcon();
         this.initMenu();
         this.welcomeCanvas.init();
@@ -76,6 +76,8 @@ const App = {
         this.initContactInfo();
         this.initShowcaseProject();
         this.initResponsive();
+
+        console.log(App.TranslationServiceObj.translate("greeting", {string: 'JDevs10'}));
 
         document.addEventListener('error', (event) => {
             window.location.href = "./404.html";
@@ -123,8 +125,11 @@ const App = {
             document.getElementsByTagName('body')[0].appendChild(menuMobileBtn);
         }
 
-        const headerMenu = document.createElement('div');
-        headerMenu.classList.add('main-menu-top');
+        const headerMenu = document.createElement('div'), 
+        topDivHeaderMenu = document.createElement('div'), 
+        bottomDivHeaderMenu = document.createElement('div');
+
+        topDivHeaderMenu.classList.add('main-menu-top');
         const htlLogoLink = document.createElement('a');
         htlLogoLink.classList.add('logo');
         htlLogoLink.rel = "home";
@@ -142,11 +147,17 @@ const App = {
         const span1 = document.createElement('span');
         span1.innerHTML="Jean-Laurent";
         htlLogoLink.appendChild(span1);
-        headerMenu.appendChild(htlLogoLink);
-        headerMenu.appendChild(document.createElement('br'));
+        topDivHeaderMenu.appendChild(htlLogoLink);
+        topDivHeaderMenu.appendChild(document.createElement('br'));
         const span2 = document.createElement('span');
-        span2.innerHTML="Full-Stack Developer";
-        headerMenu.appendChild(span2);
+        span2.innerHTML = App.TranslationServiceObj.translate("fullStackDeveloper");
+        topDivHeaderMenu.appendChild(span2);
+        headerMenu.appendChild(topDivHeaderMenu);
+
+        bottomDivHeaderMenu.classList.add('main-menu-lang');
+        this.TranslationService.initHtml(bottomDivHeaderMenu);
+        headerMenu.appendChild(bottomDivHeaderMenu);
+
         myMenu.appendChild(headerMenu);
 
         const navContent = document.createElement('nav');
@@ -162,7 +173,7 @@ const App = {
                     }
                     App.loader.loadPage(`${elem.rel}.html`);
                 });
-                btn.innerHTML = elem.label;
+                btn.innerHTML = App.TranslationServiceObj.translate(elem.label);
                 btn.rel = elem.rel;
                 btn.style.cursor = 'pointer';
                 navContent.appendChild(btn);
@@ -354,9 +365,7 @@ const App = {
                 this.size = Utils.Math.getRandomBetween(2, 4)
 
                 if (this.constructed) {
-                    // this.rgba = [182, 112, 16, 1]
                     this.rgba = [0, 170, 255, 1]
-                    // this.rgba = [112, 111, 211, 1]
                 } else {
                     this.rgba = [0, 0, 0, 0]
                 }
@@ -499,7 +508,6 @@ const App = {
             if (httpCode == 200) {
                 const jsonData = JSON.parse(response);
                 const list = document.createElement('ul');
-                // list.classList.add('magicwall-grid');
 
                 for (let index = 0; index < jsonData.length; index++) {
                     const item = jsonData[index];
@@ -620,7 +628,7 @@ const App = {
 
         const tagElem = document.createElement('div');
         tagElem.classList.add('label');
-        tagElem.innerHTML = item.label ?? '';
+        tagElem.innerHTML = App.TranslationServiceObj.translate(item.label) ?? '';
         modalInfo.appendChild(tagElem);
 
         const tagsDivElem = document.createElement('div');
@@ -633,7 +641,7 @@ const App = {
             item.tags.forEach(tag => {
                 const tagElem = document.createElement('div');
                 tagElem.classList.add('projectTag');
-                tagElem.innerHTML = tag;
+                tagElem.innerHTML = App.TranslationServiceObj.translate(tag);
                 tagsDivElem.appendChild(tagElem);
             });
         }
@@ -641,7 +649,7 @@ const App = {
 
         const detailElem = document.createElement('div');
         detailElem.classList.add('detail');
-        detailElem.innerHTML = item.description;
+        detailElem.innerHTML = App.TranslationServiceObj.translate(item.description);
         modalInfo.appendChild(detailElem);
 
         divPopUp.appendChild(modalInfo);
@@ -715,18 +723,18 @@ const App = {
                     box.classList.add('work-box');
 
                     const header = document.createElement('header');
-                    header.innerText = item.header;
+                    header.innerText = App.TranslationServiceObj.translate(item.header);
                     box.appendChild(header);
 
                     const section = document.createElement('section');
                     section.innerText = item.section;
                     const date = document.createElement('time');
-                    date.innerText = item.date;
+                    date.innerText = App.TranslationServiceObj.translate(item.date);
                     section.appendChild(date);
                     box.appendChild(section);
 
                     const footer = document.createElement('footer');
-                    footer.innerText = item.footer;
+                    footer.innerText = App.TranslationServiceObj.translate(item.footer);
                     box.appendChild(footer);
                     workWall.appendChild(box);
                 });
@@ -1001,12 +1009,252 @@ const App = {
                 });
             });
         }
+    },
+    TranslationServiceObj: null,
+    TranslationService: class {
+        static mainLangContainer = 'main-menu-lang-container'; 
+        static localStorageLanguageTranslationKey = 'languageFor_jdevs10.github.io';
+        static availableLanguage = [
+            {
+                type: 'en',
+                label: 'English language',
+                icon: 'img/icons/lang/flag-gb.svg'
+            },
+            {
+                type: 'fr',
+                label: 'Frenh language',
+                icon: 'img/icons/lang/flag-fr.svg'
+            }
+        ];
+
+        constructor() {
+            this.translations = {};
+            this.currentLanguage = 'en'; // Default language
+            const savedLanguage = Utils.Sessiontorage.get(App.TranslationService.localStorageLanguageTranslationKey);
+            if (!Utils.Function.empty(savedLanguage)) {
+                this.currentLanguage = JSON.parse(savedLanguage).type;
+            } else {
+                const obj = {
+                    id: 0, 
+                    type: App.TranslationService.availableLanguage[0].type, 
+                    clientWidth: 40, 
+                    offsetLeft: 5
+                };
+                Utils.Sessiontorage.save(App.TranslationService.localStorageLanguageTranslationKey, JSON.stringify(obj));
+            }
+        }
+
+        /**
+         * @param {HTMLElement} containerElem 
+         */
+        static initHtml(containerElem) {
+            if (!Utils.Function.empty(containerElem)) {
+                const ul = document.createElement('ul');
+                ul.setAttribute('id', App.TranslationService.mainLangContainer);
+                ul.classList.add('lang');
+                ul.addEventListener('wheel', (event) => {
+                    ul.scrollLeft += event.deltaY;
+                    event.preventDefault(); // Prevent vertical scrolling
+                });
+
+                this.availableLanguage.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    const img = document.createElement('img');
+                    img.setAttribute('index', index);
+                    img.addEventListener('click', function() {
+                        img.style.borderWidth = 'thick';
+                        img.style.borderColor = '#00AAFF';
+                        img.style.borderWidth = '2px';
+                        App.TranslationService.scrollToLanguage(img.clientWidth, img.offsetLeft);
+                        setTimeout(() => {
+                            const obj = {index: index, type: item.type};
+                            App.TranslationService.saveLanguage(JSON.stringify(obj));
+                        }, 300);
+                    });
+
+                    img.classList.add('lang-item');
+                    img.title = item.label;
+                    img.alt = item.label;
+                    img.src = item.icon;
+                    img.srcset = item.icon;
+                    img.style.borderWidth = 'thick';
+                    img.style.borderColor = 'transparent';
+
+                    ul.appendChild(li.appendChild(img));
+                });
+                containerElem.appendChild(ul);
+
+                setTimeout(() => {
+                    const savedLanguage = Utils.Sessiontorage.get(App.TranslationService.localStorageLanguageTranslationKey);
+                    if (!Utils.Function.empty(savedLanguage)) {
+                        const {index} = JSON.parse(savedLanguage);
+                        const img = document.querySelector(`#main-menu-lang-container img:nth-child(${index+1})`);
+                        img.style.borderWidth = '2px';
+                        img.style.borderColor = '#00AAFF';
+                        App.TranslationService.scrollToLanguage(img.clientWidth, img.offsetLeft);
+                    }
+                }, 200)
+            }
+        }
+
+        /**
+         * Function to scroll to a specific language
+         * @param {number} itemWidth_ 
+         * @param {number} itemOffset_ 
+         */
+        static scrollToLanguage(itemWidth_, itemOffset_) {
+            console.log(itemWidth_, itemOffset_);
+
+            const container = document.getElementById(App.TranslationService.mainLangContainer);
+            if (!Utils.Function.empty(container)) {
+                const containerWidth = container.clientWidth;
+                const itemWidth = itemWidth_;
+                const itemOffsetLeft = itemOffset_;
+
+                // Calculate the scroll position to center the selected language
+                const scrollTo = itemOffsetLeft - (containerWidth - itemWidth) / 2;
+
+                container.scrollTo({
+                    left: scrollTo,
+                    behavior: 'smooth', // Add smooth scrolling animation
+                });
+            }
+        }
+
+        static saveLanguage(language) {
+            if (!Utils.Function.empty(language)) {
+                Utils.Sessiontorage.save(App.TranslationService.localStorageLanguageTranslationKey, language);
+                location.reload();
+            }
+        }
+
+        /**
+         * Asynchronously load translations for the specified language and update the current language.
+         *
+         * @param {string} language - The language code (e.g., 'en' or 'fr') for which to load translations.
+         *
+         * @returns {Promise<void>} A promise that resolves when the translations are loaded successfully
+         *                          or rejects if an error occurs during the loading process.
+         */
+        async loadLanguage(language = this.currentLanguage) {
+            // Load translations for the specified language
+            try {
+                const response = await fetch(`lang/lang-${language}.json`);
+                if (response.status === 200) {
+                    this.translations[language] = await response.json();
+                    this.currentLanguage = language;
+                } else {
+                    console.error(`Failed to load translations for language: ${language}`);
+                }
+            } catch (error) {
+                console.error(`Error loading translations: ${error.message}`);
+                throw error;
+            }
+        }
+
+        /**
+         * Asynchronously load translations for the specified language and update the current language.
+         *
+         * @param {string} language - The language code (e.g., 'en' or 'fr') for which to load translations.
+         *
+         * @returns {Promise<void>} A promise that resolves when the translations are loaded.
+         */
+
+        /**
+         * Translate a language key with optional interpolation.
+         *
+         * @param {string} key - The language key to translate.
+         * @param {Object} [interpolateParams={}] - Optional parameters for interpolation.
+         *
+         * @example
+         * // Translates the "greeting" key with the "string" parameter interpolated.
+         * // Returns: "Hello User!"
+         * TranslateService.instant("greeting", { string: "User" });
+         *
+         * @returns {string} The translated string or the original key if translation is not found.
+         */
+        translate(key, interpolateParams = {}) {
+            const translation = this.translations[this.currentLanguage];
+            key = key.replace('lang.', '');
+            if (!Utils.Function.empty(translation[key])) {
+                // Perform interpolation if there are interpolateParams
+                if (
+                    !Utils.Function.empty(interpolateParams) && 
+                    typeof interpolateParams === "object"
+                ) {
+                    return Object.keys(interpolateParams).reduce((result, paramKey) => result.replace(`{{${paramKey}}}`, interpolateParams[paramKey]), translation[key]);
+                } else {
+                    return translation[key];
+                }
+            } else {
+                console.warn(`Translation for key '${key}' not found in '${this.currentLanguage}' language.`);
+                return key; // Return the key itself as a fallback
+            }
+        }
+
+        /**
+         * Replace lang key placeholders with their corresponding values.
+         * This function is primarily used for translating HTML pages.
+         *
+         * @param {string} html - The HTML content with lang key placeholders.
+         * @example
+         * // Input:
+         * // <p>{{'lang.helloWorld' | translate}}</p>
+         * // Output:
+         * // <p>Hello World!</p>
+         *
+         * @example
+         * // Input:
+         * // <p>{{'lang.greeting' | translate : {"string": "User"}}}</p>
+         * // Output:
+         * // <p>Hello User!</p>
+         *
+         * @returns {string} The HTML content with all lang variables translated.
+         */
+        replaceLanguageVariables(html) {
+            // This regex pattern is designed to match expressions like {{'lang.greeting' | translate : {"key": "value"}}} and capture different parts of it.
+            const regex = /{{'lang\.(.*?)'\s*\|\s*translate(\s*:\s*({[^}]*}))?}}/g;
+            const regexOnlyFindLang = /'lang\.(.*?)'\s*\|\s*translate(\s*:\s*({[^}]*}))?/g;
+
+            /**
+             * In the regex callback function, we're using the captured components as follows:
+             * - langKey: Represents the captured lang key.
+             * - colon: Discards the captured colon (:) since it's not needed.
+             * - interpolateParams: Represents the captured interpolateParams as a string.
+             */
+            const parseHtml = html.replace(regex, (match, langKey, colon, interpolateParams) => {
+                const params = !Utils.Function.empty(interpolateParams) ? JSON.parse(interpolateParams) : {};
+                return this.translate(langKey.trim(), params);
+            });
+            return parseHtml.replace(regexOnlyFindLang, (match, langKey, colon, interpolateParams) => {
+                const params = !Utils.Function.empty(interpolateParams) ? JSON.parse(interpolateParams) : {};
+                return this.translate(langKey.trim(), params);
+            });
+        }
     }
 };
 
-window.onload = (e) => {
+window.onload = async (e) => {
     if (e.currentTarget.innerWidth < 1200) {App.MOBILE = true;} else {App.MOBILE = false;}
     if (!App.READY) {
+
+        // Parse the current html body page and translate all the lang keys
+        const innerHtmlBodyPage = await new Promise((resolve) => {
+            Utils.Function.ajax(e.srcElement.URL, function({response}) {
+                App.TranslationServiceObj = new App.TranslationService();
+                // Load translations for the current language (e.g., 'en' or 'fr')
+                App.TranslationServiceObj.loadLanguage().then(() => {
+                    // Replace language variables in an HTML string
+                    const html = response;
+                    const translatedHtml = App.TranslationServiceObj.replaceLanguageVariables(html);
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(translatedHtml, 'text/html');
+                    resolve(doc.getElementsByTagName('body')[0].innerHTML);
+                });
+            });
+        });
+
+        document.body.innerHTML = innerHtmlBodyPage;
         App.init();
 
         if (Utils.Function.isScriptAdded('js/tagcanvas.js')) {

@@ -152,5 +152,40 @@ export const Utils = {
             const c4 = (2 * Math.PI) / 3
             return x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1
         }
+    },
+    Sessiontorage: {
+        /**
+         * @param   {string}    key 
+         * @param   {any}       data 
+         * @returns {boolean}
+         */
+        save: function(key, data) {
+            var local = false;
+            try {
+                window.sessionStorage.setItem(key, data);
+                local = true;
+            } catch (exception) {}
+            return local;
+        },
+        /**
+         * @param   {string}    key 
+         * @returns {any}
+         */
+        get: function(key) {
+            var local = null;
+            try {
+                local = window.sessionStorage.getItem(key);
+            } catch (exception) {}
+            return local;
+        },
+        /**
+         * @param {string} key 
+         */
+        remove: function(key) {
+            window.sessionStorage.removeItem(key);
+        },
+        removeAll: function() {
+            window.sessionStorage.clear();
+        }
     }
 }
