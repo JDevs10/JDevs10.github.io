@@ -1,10 +1,12 @@
 [
     {
         "title": "Maarch Courrier",
-        "tag": "Web Application",
+        "label": "lang.webApplication",
+        "tags" : ["lang.companyProject", "lang.openSource"],
+        "isWeb": true,
         "appLink": "https://preview.maarchcourrier.com",
         "thumbnail": "img/MaarchCourrier/logo_only.svg",
-        "description": "<b>Maarch Courrier</b> est un système complet de Gestion Électronique de Documents (GED) et de Gestion Électronique de Courrier (GEC).<br>Il traite le courrier Arrivée, Départ, Interne, ainsi que les documents de GED avec une grande richesse fonctionnelle.<br>Maarch Courrier est prêt à l'emploi, <b>entièrement libre</b>, et utilisable pour les besoins simples comme pour les plus complexes.<br>Ce guide est adapté à la démonstration en ligne https://demo.maarchcourrier.com.<br>Il présente l'application paramétrée pour la gestion du courrier et des documents d'une collectivité. Procédez dans l'ordre de façon à ne pas perdre le guide !<br>Vous trouverez sur nos sites de nombreuses informations utiles pour faire plus ample connaissance avec Maarch Courrier : <ul><li>Un produit de l'entreprise <a href=\"https://maarch.com/maarch-courrier/\" target=\"_blank\">Maarch</a></li><li>Prérequis techniques (Serveur et Poste client) : <a href=\"https://docs.maarch.org/MaarchCourrier/guat/guat_prerequisites/home.html\" target=\"_blank\">Voir les prérequis</a></li><li>Manuel Administrateur <a href=\"https://docs.maarch.org/MaarchCourrier/\" target=\"_blank\">https://docs.maarch.org/MaarchCourrier/</a></li><li>Communauté Maarch : <a href=\"https://community.maarch.org\" target=\"_blank\">https://community.maarch.org</a>.</li></ul>",
+        "description": "lang.maarchCourrierDescription",
         "carouselImgs": [
             "img/MaarchCourrier/maarch-courrier-admin.png",
             "img/MaarchCourrier/maarch-courrier-loging.png",
@@ -13,10 +15,12 @@
     },
     {
         "title": "Maarch Parapheur",
-        "tag": "Web Application",
+        "label": "lang.webApplication",
+        "tags" : ["lang.companyProject", "lang.openSource"],
+        "isWeb": true,
         "appLink": "https://preview.maarchparapheur.com",
         "thumbnail": "img/MaarchParapheur/favicon.png",
-        "description": "Maarch Parapheur répond à ces besoins avec l’outil de parapheur électronique open source. Que vous soyez une collectivité ou une administration disposant ou non de Maarch Courrier, ou toute autre organisation ayant ces besoins, cette solution est faite pour vous.<br>Issu de nouvelles technologies spécialisées dans l’ergonomie du logiciel métier telle qu’Angular, le parapheur électronique présente une interface fluide et agréable à la navigation.<br>Connecté à Maarch Courrier ou en totale autonomie, ce parapheur dernière génération permet l’annotation, le paraphe électronique, la signature en mode griffe et avec certificat électronique de n’importe quel document PDF, et ce pour tous les intervenants du circuit.<h4>Les principales fonctionnalités de Maarch Parapheur</h4><ul><li>Annotation et écriture manuscrite</li><li>Signature électronique</li><li>Un environnement opérationnel complet</li></ul>Vous trouverez sur nos sites de nombreuses informations utiles pour faire plus ample connaissance avec Maarch Parapheur : <ul><li>Un produit de l'entreprise <a href=\"https://maarch.com/maarch-parapheur/\" target=\"_blank\">Maarch</a></li><li>Prérequis techniques (Serveur et Poste client) : <a href=\"https://docs.maarch.org/MaarchParapheur/guat/guat_prerequisites/home.html\" target=\"_blank\">Voir les prérequis</a></li><li>Manuel Administrateur <a href=\"https://docs.maarch.org/MaarchParapheur/\" target=\"_blank\">https://docs.maarch.org/MaarchParapheur/</a></li><li>Communauté Maarch : <a href=\"https://community.maarch.org\" target=\"_blank\">https://community.maarch.org</a>.</li></ul>",
+        "description": "lang.maarchParapheurDescription",
         "carouselImgs": [
             "img/MaarchParapheur/MaarchParapheur-admin.png",
             "img/MaarchParapheur/MaarchParapheur-doc-circuit.png",
@@ -25,10 +29,12 @@
     },
     {
         "title": "Pacman",
-        "tag": "web Gaming",
+        "label": "lang.webGaming",
+        "tags" : ["lang.personalProject"],
+        "isWeb": true,
         "appLink": "https://jdevs10.github.io/Pacman-Web-Game",
         "thumbnail": "img/Classified-Stamp.png",
-        "description": "Creating a fun basic Pacman game on the web :)",
+        "description": "lang.pacmanDescription",
         "carouselImgs": [
             "img/Pacman/carousel-1.png",
             "img/Pacman/carousel-2.png",
@@ -36,37 +42,97 @@
         ]
     },
     {
+        "title": "iSales Pro",
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
+        "isMobile": true,
+        "appLink": "https://play.google.com/store/apps/details?id=com.iSales_Pro___",
+        "thumbnail": "img/isalesPro/isalesPro-presentation-store.png",
+        "description": "lang.iSalesProDescription",
+        "carouselImgs": [
+            "img/isalesPro/isalesPro-presentation-store.png",
+            "img/isalesPro/1-isalesPro-presentation-store.webp",
+            "img/isalesPro/2-isalesPro-presentation-store.webp",
+            "img/isalesPro/3-isalesPro-presentation-store.webp",
+            "img/isalesPro/4-isalesPro-presentation-store.webp",
+            "img/isalesPro/5-isalesPro-presentation-store.webp",
+            "img/isalesPro/6-isalesPro-presentation-store.webp",
+            "img/isalesPro/7-isalesPro-presentation-store.webp",
+            "img/isalesPro/8-isalesPro-presentation-store.webp"
+        ]
+    },
+    {
         "title": "iStock",
-        "tag": "Mobile App - Professional",
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
+        "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iStock",
         "thumbnail": "img/istock/istock-presentation-store.png",
-        "description": "iStock est une application de gestion d'entrepôt sur un PDA Zebra développé par Big Data Consulting. L'application permet à vos commerciaux dans l'entrepôt de préparer les commandes avant l'envoi par un livreur directement sur le PDA. Elle a été spécialement conçue pour les professionnels. C’est un logiciel unique en son genre.",
+        "description": "lang.iStockDescription",
         "carouselImgs": [
             "img/istock/istock-presentation-store.png",
+            "img/istock/1-istock-presentation-store.jpg",
+            "img/istock/2-istock-presentation-store.jpg",
+            "img/istock/3-istock-presentation-store.jpg",
+            "img/istock/4-istock-presentation-store.jpg",
+            "img/istock/5-istock-presentation-store.jpg",
             "img/istock/iStock-scaled-design-wireframe.png",
             "img/istock/using-istock.png"
         ]
     },
     {
         "title": "iInventaire",
-        "tag": "Mobile App - Professional",
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
+        "isMobile": true,
         "appLink": "https://play.google.com/store/apps/details?id=com.iinventaire",
         "thumbnail": "img/iinventaire/iInventaire-presentation-store.png",
-        "description": "iInventaire est une application de gestion d'entrepôt sur un PDA Zebre développé par Big Data Consulting. L'application permet à vos commerciaux dans l'entrepôt d'actualiser ces inventaires directement sur le PDA.",
+        "description": "lang.iInventaireDescription",
         "carouselImgs": [
             "img/iinventaire/iInventaire-presentation-store.png",
+            "img/iinventaire/1-iInventaire-presentation-store.png",
+            "img/iinventaire/2-iInventaire-presentation-store.png",
+            "img/iinventaire/3-iInventaire-presentation-store.png",
+            "img/iinventaire/4-iInventaire-presentation-store.png",
+            "img/iinventaire/5-iInventaire-presentation-store.png",
+            "img/iinventaire/6-iInventaire-presentation-store.png",
+            "img/iinventaire/7-iInventaire-presentation-store.png",
+            "img/iinventaire/8-iInventaire-presentation-store.png",
             "img/iinventaire/iInventaire-scaled-design-wireframe.png"
         ]
     },
     {
-        "title": "iNetty Team",
-        "tag": "Mobile App - Professional",
-        "appLink": "https://play.google.com/store/apps/details?id=com.inettyforteams",
+        "title": "iNetty Mobile",
+        "label": "lang.professionalMobileApp",
+        "tags" : ["lang.companyProject"],
+        "isMobile": true,
+        "appLink": "https://play.google.com/store/apps/details?id=com.anexys.inetty",
         "thumbnail": "img/inetty/inetty-presentation-store.png",
-        "description": "iNetty Team est une solution qui vous accompagne depuis la planification jusqu’à la réalisation de vos interventions sur le terrain et optimise la remontée et le traitement de vos informations.",
+        "description": "lang.iNettyMobileDescription",
         "carouselImgs": [
-            "img/inetty/iNetty-Teams-scaled-design-wireframe.png",
-            "img/inetty/inetty-presentation-store.png"
+            "img/inetty/inetty-presentation-store.png",
+            "img/inetty/1-inetty-presentation-store.jpg",
+            "img/inetty/2-inetty-presentation-store.jpg",
+            "img/inetty/3-inetty-presentation-store.jpg",
+            "img/inetty/4-inetty-presentation-store.jpg",
+            "img/inetty/5-inetty-presentation-store.jpg",
+            "img/inetty/6-inetty-presentation-store.jpg",
+            "img/inetty/7-inetty-presentation-store.jpg",
+            "img/inetty/8-inetty-presentation-store.jpg"
+        ]
+    },
+    {
+        "title": "Project T.A.",
+        "label": "lang.personalMobileApp",
+        "tags" : ["lang.personalProject", "lang.inDevelopment"],
+        "isMobile": true,
+        "apkDemoLink": "",
+        "appLink": "",
+        "thumbnail": "img/Classified-Stamp.png",
+        "description": "lang.projectTA",
+        "carouselImgs": [
+            "img/Classified-Stamp.png",
+            "img/Classified-Stamp.png"
         ]
     }
 ]

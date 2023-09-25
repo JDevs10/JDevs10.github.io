@@ -1,26 +1,26 @@
 [
     {
-        "header": "Web & Mobile developer - Internship",
+        "header": "lang.webAndMobileDeveloperInternship",
         "section": "Big Data Consulting",
-        "date": "2019 (6 months)",
-        "footer": "- Creating websites and applications (Andriod) based on client needs.\n- Maintenant, update existing solutions.\n- Participate in the implementation of EDI solutions."
+        "date": "lang.2019During6Months",
+        "footer": "lang.bdc_webAndMobileDeveloperInternshipMissions"
     },
     {
-        "header": "Full stack mobile app developer",
+        "header": "lang.fullStackMobileAppDeveloper",
         "section": "Big Data Consulting",
         "date": "2019-2021",
-        "footer": "- Produce and analyze specifications.\n- Develop the application from the specifications provided.\n- Provid automatic/unit tests and update the documentation."
+        "footer": "lang.bdc_fullStackMobileAppDeveloperMissions"
     },
     {
-        "header": "EDI consultant | Support N3 Tradexpress",
+        "header": "lang.atos_ediConsultntSupportN3Tradexpress",
         "section": "Atos",
         "date": "2020-2021",
-        "footer": "40% of time consult at Atos by Big Data Consulting.\nMy missions :\n- WorkPackages installation.\n- EDI flow configuration.\n- Debugging EDI flows."
+        "footer": "lang.atos_ediConsultntSupportN3TradexpressMissons"
     },
     {
-        "header": "Full stack Angular PHP developer",
+        "header": "lang.fullStackAngularPhpDeveloper",
         "section": "Maarch",
         "date": "2022-today",
-        "footer": "- Analyse/Produce new features.\n- Keep existing applications up to date.\n- Participate to keep documentations updated.\n- Provid automatic/unit tests."
+        "footer": "lang.maarch_fullStackAngularPhpDeveloperMissons"
     }
 ]
